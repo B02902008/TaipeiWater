@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>Taipei Water</title>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+   		<meta charset="utf-8">
+    	<meta name="mobile-web-app-capable" content="yes">
+    	<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+		<link rel="apple-touch-icon" sizes="128x128" href="img/icon.png">
+		<script src="js/main.js"></script>
+		<style>
+			html, body {
+        		height: 100%;
+        		margin: 0;
+        		padding: 0;
+      		}
+			#map {
+				height: 100%;
+				width: 100%;
+      			position: absolute;
+      			top: 0px;
+      			left: 0px;
+				z-index: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="panel-container"></div>
+		<div id="sidebar-container"></div>
+		<div id="map"></div>
+		<script>
+			var map;
+			function initMap() {
+				map = new google.maps.Map(document.getElementById('map'), {
+				center: {lat: 25.05, lng: 121.53},
+				zoom: 13,
+				disableDefaultUI: true});
+			}
+		</script>
+		<!--
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb8KGF-DC8hE96MLbr4hVHwNBIBpdQgMQ&callback=initMap" async defer></script>
+		-->
+	</body>
+</html>
