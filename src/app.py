@@ -24,7 +24,7 @@ def load_register():
 
 @app.route('/login', methods=['POST'])
 def login():
-	print(request)
+    print(request)
     return 'Jizz'
 
 if __name__ == '__main__':
