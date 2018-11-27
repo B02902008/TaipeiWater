@@ -1,5 +1,5 @@
 <div id="login-panel-body">
-	<div><img class="panel-logo" src="img/logo-black.png"></div>
+	<div><img class="panel-logo" src="{{url_for('static', filename='img/logo-black.png')}}"></div>
 	<hr>
 	<form id="login-panel-form" role="form" name="login-panel-form">
 		<div class="form-group">
@@ -20,4 +20,4 @@
 	<span>&nbsp;或者&nbsp;</span>
 	<button type="button" class="btn btn-default login-panel-btn" id="login-panel-visit">訪客</button>
 </div>
-<script src="js/login.js"></script>
+<script src="{{url_for('static', filename='js/login.js')}}"></script>

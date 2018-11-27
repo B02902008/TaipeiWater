@@ -1,5 +1,5 @@
 <div id="register-panel-body">
-	<div><img class="panel-logo" src="img/logo-black.png"></div>
+	<div><img class="panel-logo" src="{{url_for('static', filename='img/logo-black.png')}}"></div>
 	<hr>
 	<form id="register-panel-form" role="form" name="register-panel-form">
 		<div class="form-group">
@@ -20,4 +20,4 @@
 		<button type="submit" class="btn btn-primary btn-block register-panel-btn" id="register-panel-register">註冊</button>
 	</form>
 </div>
-<script src="js/register.js"></script>
+<script src="{{url_for('static', filename='js/register.js')}}"></script>

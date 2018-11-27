@@ -2,7 +2,7 @@
     <div id="sidebar-overlay"></div>
     <nav id="sidebar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <ul class="nav sidebar-nav">
-            <li><img id="sidebar-nav-logo" src="img/logo-white.png"></li>
+            <li><img id="sidebar-nav-logo" src="{{url_for('static', filename='img/logo-white.png')}}"></li>
             <li><a href="#" id="menu-show_all">哪裡有水喝？</a></li>
             <li><a href="#" id="menu-navigate">上哪找水喝？</a></li>
             <li><a href="#" id="menu-show_spot">那裡有水喝？</a></li>
@@ -15,5 +15,5 @@
         <span id="sidebar-btn-content" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
     </button>
 </div>
-<script src="js/sidebar.js"></script>
-<link rel="stylesheet" href="css/sidebar.css">
+<script src="{{url_for('static', filename='js/sidebar.js')}}"></script>
+<link rel="stylesheet" href="{{url_for('static', filename='css/sidebar.css')}}">
