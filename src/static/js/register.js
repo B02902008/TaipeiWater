@@ -1,9 +1,10 @@
+'use strict'
 $(document).ready(function () {
     $('#register-panel-form').submit(function () {
-        var username = $('#register-panel-form input[name=usr]').val(),
-            password = $('#register-panel-form input[name=pwd]').val(),
-            confirm = $('#register-panel-form input[name=confirm]').val(),
-            helper = $('#register-panel-form input[name=help]').prop("checked");
+        let username = $('#register-panel-form input[name=usr]').val();
+        let password = $('#register-panel-form input[name=pwd]').val();
+        let confirm = $('#register-panel-form input[name=confirm]').val();
+        let helper = $('#register-panel-form input[name=help]').prop("checked");
         if (!register_validate(username, password, confirm, helper))
             return false;
         load_login();
