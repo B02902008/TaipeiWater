@@ -20,6 +20,7 @@ $(document).ready(function () {
                     setCookie('token', obj.token, 7);
 				    window.uid = obj.uid;
 				    window.help = obj.help;
+                    window.token = obj.token;
 				    window.login = true;
 				    window.state = "show";
                 } else {
@@ -33,10 +34,12 @@ $(document).ready(function () {
         return false;
 	});
     $('#login-panel-register').click(function () {
-        load_register();
+        window.state = "register";
+        page_control();
     });
     $('#login-panel-visit').click(function () {
-        load_register();
+        window.state = "show";
+        page_control();
     });
     function login_validate(username, password) {
         if (username === '' || password === '') {

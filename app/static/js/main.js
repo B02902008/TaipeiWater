@@ -1,6 +1,9 @@
 $(document).ready(function () {
 	window.uid = -1;
+	window.help = false;
 	window.token = getCookie('token');
+	window.login = false;
+	window.state = "login";
 	if ( window.token != null) {
         $.ajax({
             url: "/user/token",
@@ -16,8 +19,10 @@ $(document).ready(function () {
                     setCookie('token', obj.token, 7);
                     window.uid = obj.uid;
                     window.help = obj.help;
+                    window.token = obj.token;
                     window.login = true;
                     window.state = "show";
+                    page_control();
                 } else {
                     alert(response.msg);
                 }
@@ -27,11 +32,8 @@ $(document).ready(function () {
             }
         });
 	} else {
-        window.login = false;
-        window.state = 'login';
+        page_control();
 	}
-	$('#sidebar-container').load("/load/sidebar");
-	$('#panel-container').load("/load/panel");
 });
 function toggle_panel() {
 	$('#panel-container').toggle();
@@ -50,4 +52,21 @@ function getCookie(name) {
         	return c.substring(key.length, c.length);
     }
     return null;
+}
+function page_control() {
+	switch (window.state) {
+		case "login":
+            $('#panel-container').load("/load/panel");
+            load_login();
+            break;
+		case "register":
+            load_register();
+            break;
+		case "show":
+			toggle_panel();
+            $('#sidebar-container').load("/load/sidebar");
+            break;
+		default:
+			break;
+    }
 }
