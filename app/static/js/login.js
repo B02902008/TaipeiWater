@@ -16,7 +16,9 @@ $(document).ready(function () {
 			},
 			success: function(response) {
 				if (response.success) {
-                    console.log(response.msg)
+				    let obj = response.msg
+                    console.log(obj)
+                    setCookie('token', obj.token, 7);
                 } else {
 				    alert(response.msg);
                 }

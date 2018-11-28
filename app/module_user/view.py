@@ -22,7 +22,7 @@ def login():
     sql = "UPDATE users SET token='" + token + "', tokenExpire=DATE_ADD(NOW(), INTERVAL 7 DAY) WHERE id=" + str(uid)
     db_op.sql_execute(db, cursor, sql, True)
     db_op.db_close(db)
-    return json.dumps({"success": True, "msg": json.dumps({"uid": uid, "help": help, "token": token})})
+    return json.dumps({"success": True, "msg": {"uid": uid, "help": help, "token": token}})
 
 
 @blue_user.route('/token', methods=['POST'])
