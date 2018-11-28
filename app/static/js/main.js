@@ -10,11 +10,11 @@ $(document).ready(function () {
             data: {
                 token: window.token,
             },
-            success: function(msg) {
-                console.log(msg)
+            success: function(response) {
+                console.log(response)
             },
-            error: function(msg) {
-                console.log(msg);
+            error: function(response) {
+                console.log(response);
             }
         });
 	} else {

@@ -6,7 +6,7 @@ def db_connect():
         db = pymysql.connect("localhost", "TaipeiWaterServer", "tpewater123", "TaipeiWater")
         cursor = db.cursor()
     except pymysql.MySQLError:
-        return null, null
+        return None, None
     return db, cursor
 
 
