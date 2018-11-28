@@ -6,7 +6,7 @@ $(document).ready(function () {
         if (!login_validate(username, password))
             return false;
         $.ajax({
-			url: "/login",
+			url: "/user/login",
             type: "POST",
 			dataType: "JSON",
             async: false,
