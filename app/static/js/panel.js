@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
 });
 function load_login() {
     $('#control-panel').load("/load/login");
