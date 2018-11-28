@@ -16,9 +16,12 @@ $(document).ready(function () {
 			},
 			success: function(response) {
 				if (response.success) {
-				    let obj = response.msg
-                    console.log(obj)
+				    let obj = response.msg;
                     setCookie('token', obj.token, 7);
+				    window.uid = obj.uid;
+				    window.help = obj.help;
+				    window.login = true;
+				    window.state = "show";
                 } else {
 				    alert(response.msg);
                 }

@@ -11,7 +11,16 @@ $(document).ready(function () {
                 token: window.token,
             },
             success: function(response) {
-                console.log(response)
+                if (response.success) {
+                    let obj = response.msg;
+                    setCookie('token', obj.token, 7);
+                    window.uid = obj.uid;
+                    window.help = obj.help;
+                    window.login = true;
+                    window.state = "show";
+                } else {
+                    alert(response.msg);
+                }
             },
             error: function(response) {
                 console.log(response);
