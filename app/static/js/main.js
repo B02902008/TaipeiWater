@@ -25,6 +25,7 @@ $(document).ready(function () {
                     page_control();
                 } else {
                     alert(response.msg);
+                    page_control();
                 }
             },
             error: function(response) {
