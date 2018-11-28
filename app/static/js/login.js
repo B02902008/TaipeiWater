@@ -14,11 +14,15 @@ $(document).ready(function () {
 				username: username,
 				password: password
 			},
-			success: function(msg) {
-				console.log(msg)
+			success: function(response) {
+				if (response.success) {
+                    console.log(response.msg)
+                } else {
+				    alert(response.msg);
+                }
             },
-			error: function(msg) {
-				console.log(msg);
+			error: function(response) {
+				console.log(response);
             }
 		});
         return false;

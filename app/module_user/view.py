@@ -9,20 +9,20 @@ import json
 def login():
     db, cursor = db_op.db_connect()
     if db is None or cursor is None:
-        return json.dumps({"success": -1, "msg": "資料庫錯誤"})
+        return json.dumps({"success": False, "msg": "資料庫錯誤"})
     sql = "SELECT id, help FROM users WHERE username='" + \
           request.values['username'] + "' AND password=Password('" + request.values['password'] + "')"
     result = db_op.sql_execute(db, cursor, sql, False)
     if len(result) != 1:
         db_op.db_close(db)
-        return json.dumps({"success": -1, "msg": "帳號或密碼錯誤"})
+        return json.dumps({"success": False, "msg": "帳號或密碼錯誤"})
     uid = result[0][0]
     help = (result[0][1] == 1)
     token = str(uuid.uuid1())
-    sql = "UPDATE users SET token='" + token + "', tokenExpire=DATE_ADD(NOW(), INTERVAL 3 DAY) WHERE id=" + str(uid)
+    sql = "UPDATE users SET token='" + token + "', tokenExpire=DATE_ADD(NOW(), INTERVAL 7 DAY) WHERE id=" + str(uid)
     db_op.sql_execute(db, cursor, sql, True)
     db_op.db_close(db)
-    return json.dumps({"success": 1, "msg": json.dumps({"uid": uid, "help": help, "token": token})})
+    return json.dumps({"success": True, "msg": json.dumps({"uid": uid, "help": help, "token": token})})
 
 
 @blue_user.route('/token', methods=['POST'])
