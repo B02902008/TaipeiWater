@@ -1,3 +1,6 @@
+import pymysql
+
+
 def db_connect():
     try:
         db = pymysql.connect("localhost", "TaipeiWaterServer", "tpewater123", "TaipeiWater")
