@@ -10,11 +10,12 @@ def db_connect():
     return db, cursor
 
 
-def sql_execute(cursor, sql):
+def sql_execute(db, cursor, sql, commit):
     try:
         cursor.execute(sql)
+        if commit:
+            db.commit()
     except pymysql.MySQLError:
-        print("error")
         return ()
     return cursor.fetchall()
 
