@@ -12,5 +12,5 @@ def db_connect():
 
 def sql_execute(cursor, sql):
     cursor.execute(sql)
-    print(cursor.fetchAll())
+    print(cursor.fetchall())
     return
