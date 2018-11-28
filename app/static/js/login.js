@@ -34,7 +34,10 @@ $(document).ready(function () {
             alert("有欄位為空白！");
             return false;
         }
-        console.log(username, password);
+        if (password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/i) == null) {
+            alert("密碼錯誤！");
+            return false;
+        }
         return true;
     }
 });

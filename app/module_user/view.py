@@ -19,7 +19,7 @@ def login():
     uid = result[0][0]
     help = (result[0][1] == 1)
     token = str(uuid.uuid1())
-    sql = "UPDATE users SET token='" + token + "', tokenExpire=DATE_ADD(NOW(), INTERVAL 3 DAY) WHERE id=" + uid
+    sql = "UPDATE users SET token='" + token + "', tokenExpire=DATE_ADD(NOW(), INTERVAL 3 DAY) WHERE id=" + str(uid)
     db_op.sql_execute(cursor, sql)
     db_op.db_close(db)
     return json.dumps({"success": 1, "msg": json.dumps({"uid": uid, "help": help, "token": token})})
