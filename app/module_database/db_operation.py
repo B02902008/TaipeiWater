@@ -12,5 +12,9 @@ def db_connect():
 
 def sql_execute(cursor, sql):
     cursor.execute(sql)
-    print(cursor.fetchall())
+    return cursor.fetchall()
+
+
+def db_close(db):
+    db.close()
     return

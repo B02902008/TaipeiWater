@@ -8,8 +8,11 @@ def login():
     db, cursor = db_op.db_connect()
     sql = "SELECT id, help FROM users WHERE username='" + \
           request.values['username'] + "' AND password=Password('" + request.values['password'] + "')"
-    db_op.sql_execute(cursor, sql)
-    print(request.values)
+    result = db_op.sql_execute(cursor, sql)
+    db_op.db_close(db)
+    print(result)
+    print(type(result))
+    print(len(result))
     return 'Hi'
 
 
