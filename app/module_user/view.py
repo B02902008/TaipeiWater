@@ -5,7 +5,7 @@ from app.module_database import db_operation as db_op
 
 @blue_user.route('/login', methods=['POST'])
 def login():
-    db, cursor = dp_op.db_connect()
+    db, cursor = db_op.db_connect()
     sql = "SELECT id, help FROM users WHERE username='" + \
           request.values['username'] + "' AND password=Password('" + request.values['password'] + "')"
     db_op.sql_excute(cursor, sql)
