@@ -10,7 +10,7 @@ def db_connect():
     return db, cursor
 
 
-def sql_excute(cursor, sql):
-    cursor.excute(sql)
+def sql_execute(cursor, sql):
+    cursor.execute(sql)
     print(cursor.fetchAll())
     return
