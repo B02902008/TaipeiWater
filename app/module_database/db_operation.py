@@ -14,6 +14,7 @@ def sql_execute(cursor, sql):
     try:
         cursor.execute(sql)
     except pymysql.MySQLError:
+        print("error")
         return ()
     return cursor.fetchall()
 
