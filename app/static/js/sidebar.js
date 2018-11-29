@@ -9,7 +9,8 @@ $(document).ready(function () {
     $('#menu-show_all').addClass("menu-selected");
     $('.menu-list-item').click(function (event) {
         $('.menu-list-item').removeClass("menu-selected");
-        event.target.addClass("menu-selected");
+        console.log(event);
+        $(event.target).addClass("menu-selected");
     })
 });
 function toggle_sidebar() {
