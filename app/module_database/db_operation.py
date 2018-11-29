@@ -15,8 +15,8 @@ def sql_execute(db, cursor, sql, commit):
         cursor.execute(sql)
         if commit:
             db.commit()
-    except pymysql.MySQLError:
-        print("error")
+    except pymysql.MySQLError as e:
+        print(e)
         return ()
     return cursor.fetchall()
 
