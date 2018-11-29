@@ -110,7 +110,8 @@
 .sidebar-nav li:nth-child(5):before {background-color: #4285F4;}
 .sidebar-nav li:nth-child(6):before {background-color: #0F9D58;}
 .sidebar-nav li:nth-child(7):before {background-color: #DB4437;}
-.sidebar-nav li:hover:before {
+.sidebar-nav li:hover:before,
+.sidebar-nav li.open:before {
 	width: 100%;
 	-webkit-transition: width .2s ease-in;
 	-moz-transition: width .2s ease-in;
@@ -124,6 +125,8 @@
 }
 .sidebar-nav li a:hover,
 .sidebar-nav li a:active,
-.sidebar-nav li a:focus {
+.sidebar-nav li a:focus,
+.sidebar-nav li.open a {
 	color: #fff;
+	background-color: transparent;
 }
