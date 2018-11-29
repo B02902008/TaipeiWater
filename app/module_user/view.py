@@ -51,18 +51,14 @@ def register():
         return json.dumps({"success": False, "msg": "資料庫錯誤"})
     sql = "SELECT COUNT(*) FROM users WHERE username='" + request.values['username'] + "'"
     result = db_op.sql_execute(db, cursor, sql, False)
-    print(result)
-    return "Hi"
-    '''if len(result) != 1:
+    if result[0][0] != 0:
         db_op.db_close(db)
-        return json.dumps({"success": False, "msg": "登入逾期，請重新登入"})
-    uid = result[0][0]
-    help = (result[0][1] == 1)
-    token = str(uuid.uuid1())
-    sql = "UPDATE users SET token='" + token + "', tokenExpire=DATE_ADD(NOW(), INTERVAL 7 DAY) WHERE id=" + str(uid)
+        return json.dumps({"success": False, "msg": "使用者已存在"})
+    sql = "INSERT INTO users (username,password,help) VALUES ('" + request.values['username'] + \
+          "',Passowrd('" + request.values['password'] + "')," + 1 if request.values['helper'] == True else 0 + ")"
     db_op.sql_execute(db, cursor, sql, True)
     db_op.db_close(db)
-    return json.dumps({"success": True, "msg": {"uid": uid, "help": help, "token": token}})'''
+    return json.dumps({"success": True, "msg": "註冊成功，請進行登入"})
 
 
 @blue_user.route('/logout', methods=['POST'])
