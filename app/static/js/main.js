@@ -37,8 +37,17 @@ $(document).ready(function () {
         page_control();
 	}
 });
-function toggle_panel() {
-	$('#panel-container').toggle();
+function hide_panel() {
+    $('#panel-container').hide();
+}
+function show_panel() {
+    $('#panel-container').show();
+}
+function hide_sidebar() {
+    $('#sidebar-container').hide();
+}
+function show_sidebar() {
+    $('#sidebar-container').show();
 }
 function setCookie(name, value, expire) {
     let d = new Date();
@@ -58,13 +67,18 @@ function getCookie(name) {
 function page_control() {
 	switch (window.state) {
 		case "login":
+		    show_panel();
+		    hide_sidebar();
             $('#panel-container').load("/load/panel");
             break;
 		case "register":
+		    show_panel();
+		    hide_sidebar();
             load_register();
             break;
 		case "show":
-			toggle_panel();
+		    hide_panel();
+		    show_sidebar();
             $('#sidebar-container').load("/load/sidebar");
             break;
 		default:
