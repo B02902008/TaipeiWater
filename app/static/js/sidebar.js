@@ -6,7 +6,7 @@ $(document).ready(function () {
     $('#sidebar-overlay').click(function () {
         toggle_sidebar();
     });
-    $('#menu-show_all').click();
+    $('#menu-show_all').addClass("open");
 });
 function toggle_sidebar() {
     $('#sidebar-overlay').toggle();
