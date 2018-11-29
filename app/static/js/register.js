@@ -19,9 +19,8 @@ $(document).ready(function () {
             },
             success: function(response) {
                 if (response.success) {
-                    let obj = response.msg;
-                    window.login = true;
-                    window.state = "show";
+                    alert(response.msg)
+                    window.state = "login";
                     page_control();
                 } else {
                     alert(response.msg);

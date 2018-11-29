@@ -59,6 +59,7 @@ function page_control() {
 	switch (window.state) {
 		case "login":
             $('#panel-container').load("/load/panel");
+            console.log($('#control-panel').html());
             break;
 		case "register":
             load_register();
