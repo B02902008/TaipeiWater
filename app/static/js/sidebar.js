@@ -30,6 +30,8 @@ $(document).ready(function () {
                     window.token = '';
                     window.login = false;
                     window.state = "login";
+                    toggle_sidebar();
+			        toggle_panel();
                     page_control();
                 } else {
                     alert(response.msg);
