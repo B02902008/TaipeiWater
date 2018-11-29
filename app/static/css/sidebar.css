@@ -115,7 +115,7 @@
 	-moz-transition: width .2s ease-in;
 	transition: width .2s ease-in;
 }
-.sidebar-nav li.open:before {
+.sidebar-nav li.menu-selected:before {
 	width: 100%;
 }
 .sidebar-nav li a {
@@ -126,7 +126,7 @@
 .sidebar-nav li a:hover,
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus,
-.sidebar-nav li.open a {
+.sidebar-nav li.menu-selected a {
 	color: #fff;
 	background-color: transparent;
 }
