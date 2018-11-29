@@ -10,7 +10,7 @@ $(document).ready(function () {
     $('.menu-list-item').click(function (event) {
         $('.menu-list-item').removeClass("menu-selected");
         console.log(event);
-        $(event.target).addClass("menu-selected");
+        $(event.target.parentElement).addClass("menu-selected");
     })
 });
 function toggle_sidebar() {
