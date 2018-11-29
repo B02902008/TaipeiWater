@@ -1,3 +1,4 @@
+'use strict';
 $(document).ready(function () {
 	window.uid = -1;
 	window.help = false;

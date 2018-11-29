@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 $(document).ready(function () {
 	$('#login-panel-form').submit(function () {
         let username = $('#login-panel-form input[name=usr]').val();
@@ -23,6 +23,7 @@ $(document).ready(function () {
                     window.token = obj.token;
 				    window.login = true;
 				    window.state = "show";
+				    page_control();
                 } else {
 				    alert(response.msg);
                 }

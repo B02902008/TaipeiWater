@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 $(document).ready(function () {
     $('#register-panel-form').submit(function () {
         let username = $('#register-panel-form input[name=usr]').val();
@@ -7,7 +7,30 @@ $(document).ready(function () {
         let helper = $('#register-panel-form input[name=help]').prop("checked");
         if (!register_validate(username, password, confirm, helper))
             return false;
-        load_login();
+        $.ajax({
+            url: "/user/register",
+            type: "POST",
+            dataType: "JSON",
+            async: false,
+            data: {
+                username: username,
+                password: password,
+                helper: helper
+            },
+            success: function(response) {
+                if (response.success) {
+                    let obj = response.msg;
+                    window.login = true;
+                    window.state = "show";
+                    page_control();
+                } else {
+                    alert(response.msg);
+                }
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        });
         return false;
     });
     function register_validate(username, password, confirm, helper) {
