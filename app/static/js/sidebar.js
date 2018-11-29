@@ -9,9 +9,12 @@ $(document).ready(function () {
     $('#menu-show_all').addClass("menu-selected");
     $('.menu-list-item').click(function (event) {
         $('.menu-list-item').removeClass("menu-selected");
-        console.log(event);
         $(event.target.parentElement).addClass("menu-selected");
-    })
+        toggle_sidebar();
+    });
+    $('#menu-logout').click(function () {
+
+    });
 });
 function toggle_sidebar() {
     $('#sidebar-overlay').toggle();
