@@ -59,7 +59,7 @@ function getCookie(name) {
 function page_control() {
 	switch (window.state) {
 		case "login":
-		    $(window).ready(load_login);
+		    $(window).load(load_login);
             break;
 		case "register":
             load_register();
