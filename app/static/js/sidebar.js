@@ -1,4 +1,10 @@
 $(document).ready(function () {
+    if (!window.login) {
+        $('#menu-report').hide();
+        $('#menu-logout').hide();
+    } else if (!window.help) {
+        $('#menu-report').hide();
+    }
     $('#sidebar-btn').click(function () {
         toggle_sidebar();
         $('#sidebar-btn').blur();
