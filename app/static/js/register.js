@@ -45,7 +45,6 @@ $(document).ready(function () {
             alert("兩次密碼不一致！");
             return false;
         }
-        console.log(username, password, confirm, helper);
         return true;
     }
 });

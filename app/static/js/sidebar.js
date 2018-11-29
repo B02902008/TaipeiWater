@@ -6,10 +6,11 @@ $(document).ready(function () {
     $('#sidebar-overlay').click(function () {
         toggle_sidebar();
     });
-    function toggle_sidebar() {
-        $('#sidebar-overlay').toggle();
-        $('#sidebar-wrapper').toggleClass('toggled');
-        $('#sidebar-btn-content').toggleClass('glyphicon-menu-hamburger');
-        $('#sidebar-btn-content').toggleClass('glyphicon-remove');
-    }
+    $('#menu-show_all').addClass("active");
 });
+function toggle_sidebar() {
+    $('#sidebar-overlay').toggle();
+    $('#sidebar-wrapper').toggleClass('toggled');
+    $('#sidebar-btn-content').toggleClass('glyphicon-menu-hamburger');
+    $('#sidebar-btn-content').toggleClass('glyphicon-remove');
+}
