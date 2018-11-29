@@ -56,6 +56,7 @@ def register():
         return json.dumps({"success": False, "msg": "使用者已存在"})
     sql = "INSERT INTO users (username,password,help) VALUES ('" + request.values['username'] + "',PASSWORD('" + \
           request.values['password'] + "')," + str(1) if request.values['helper'] is True else str(0) + ")"
+    print("insert")
     print(db_op.sql_execute(db, cursor, sql, True))
     db_op.db_close(db)
     return json.dumps({"success": True, "msg": "註冊成功，請進行登入"})
