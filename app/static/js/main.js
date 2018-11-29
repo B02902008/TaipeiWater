@@ -5,6 +5,7 @@ $(document).ready(function () {
 	window.token = getCookie('token');
 	window.login = false;
 	window.state = "login";
+	$('#panel-container').load("/load/panel");
 	if ( window.token != null) {
         $.ajax({
             url: "/user/token",
@@ -58,8 +59,7 @@ function getCookie(name) {
 function page_control() {
 	switch (window.state) {
 		case "login":
-            $('#panel-container').load("/load/panel");
-            console.log($('#control-panel').html());
+		    load_login();
             break;
 		case "register":
             load_register();

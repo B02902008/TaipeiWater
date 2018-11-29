@@ -19,7 +19,7 @@ $(document).ready(function () {
             },
             success: function(response) {
                 if (response.success) {
-                    alert(response.msg)
+                    alert(response.msg);
                     window.state = "login";
                     page_control();
                 } else {
@@ -38,7 +38,7 @@ $(document).ready(function () {
             return false;
         }
         if (password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/i) == null) {
-            alert("密碼錯誤！");
+            alert("密碼不合要求！");
             return false;
         }
         if (password !== confirm) {

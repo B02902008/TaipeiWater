@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    load_login();
+    if ($('#control-panel').html() == null)
+        load_login();
 });
 function load_login() {
     $('#control-panel').load("/load/login");
