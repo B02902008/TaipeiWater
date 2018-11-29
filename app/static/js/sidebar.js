@@ -13,7 +13,32 @@ $(document).ready(function () {
         toggle_sidebar();
     });
     $('#menu-logout').click(function () {
-
+        $.ajax({
+            url: "/user/logout",
+            type: "POST",
+            dataType: "JSON",
+            async: false,
+            data: {
+                uid: window.uid,
+                token: window.token
+            },
+            success: function(response) {
+                if (response.success) {
+                    setCookie('token', '', -1);
+                    window.uid = -1;
+                    window.help = false;
+                    window.token = '';
+                    window.login = false;
+                    window.state = "login";
+                    page_control();
+                } else {
+                    alert(response.msg);
+                }
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        });
     });
 });
 function toggle_sidebar() {

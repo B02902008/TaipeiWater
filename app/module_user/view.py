@@ -56,12 +56,23 @@ def register():
         return json.dumps({"success": False, "msg": "使用者已存在"})
     sql = "INSERT INTO users (username,password,help) VALUES ('" + request.values['username'] + "',PASSWORD('" + \
           request.values['password'] + "')," + (str(1) if request.values['helper'] is True else str(0)) + ")"
-    print(db_op.sql_execute(db, cursor, sql, True))
+    db_op.sql_execute(db, cursor, sql, True)
     db_op.db_close(db)
     return json.dumps({"success": True, "msg": "註冊成功，請進行登入"})
 
 
 @blue_user.route('/logout', methods=['POST'])
 def logout():
-    print(request.values)
-    return 'Hi'
+    db, cursor = db_op.db_connect()
+    if db is None or cursor is None:
+        return json.dumps({"success": False, "msg": "資料庫錯誤"})
+    sql = "SELECT COUNT(*) FROM users WHERE id=" + str(request.values['uid']) + " AND token='" + \
+          request.values['token'] + "'"
+    result = db_op.sql_execute(db, cursor, sql, False)
+    if result[0][0] != 1:
+        db_op.db_close(db)
+        return json.dumps({"success": True, "msg": ""})
+    sql = "UPDATE users SET token='', tokenExpire=TIMESTAMP(0) WHERE id=" + str(request.values['uid'])
+    print(db_op.sql_execute(db, cursor, sql, True))
+    db_op.db_close(db)
+    return json.dumps({"success": True, "msg": ""})
