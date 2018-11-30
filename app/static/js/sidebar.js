@@ -30,11 +30,7 @@ $(document).ready(function () {
             success: function(response) {
                 if (response.success) {
                     setCookie('token', '', -1);
-                    window.uid = -1;
-                    window.help = false;
-                    window.token = '';
-                    window.login = false;
-                    window.state = "login";
+                    window_reset();
                     page_control();
                 } else {
                     alert(response.msg);

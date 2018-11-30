@@ -1,10 +1,7 @@
 'use strict';
 $(document).ready(function () {
-	window.uid = -1;
-	window.help = false;
+    window_reset();
 	window.token = getCookie('token');
-	window.login = false;
-	window.state = "login";
 	$('#panel-container').load("/load/panel");
 	$('#sidebar-container').load("/load/sidebar");
 	if ( window.token != null) {
@@ -23,6 +20,9 @@ $(document).ready(function () {
                     window.uid = obj.uid;
                     window.help = obj.help;
                     window.token = obj.token;
+                    window.view_type = obj.view_type;
+                    window.view_status = obj.view_status;
+                    window.view_range = obj.view_range;
                     window.login = true;
                     window.state = "show";
                     page_control();
@@ -39,6 +39,16 @@ $(document).ready(function () {
         page_control();
 	}
 });
+function window_reset() {
+    window.uid = -1;
+    window.help = false;
+    window.token = '';
+    window.view_type = '';
+    window.view_status = '';
+    window.view_range = 0;
+    window.login = false;
+    window.state = "login";
+}
 function hide_panel() {
     $('#panel-container').hide();
 }

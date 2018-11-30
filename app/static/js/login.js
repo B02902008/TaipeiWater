@@ -21,6 +21,9 @@ $(document).ready(function () {
 				    window.uid = obj.uid;
 				    window.help = obj.help;
                     window.token = obj.token;
+                    window.view_type = obj.view_type;
+                    window.view_status = obj.view_status;
+                    window.view_range = obj.view_range;
 				    window.login = true;
 				    window.state = "show";
 				    page_control();
