@@ -29,17 +29,20 @@ def select_user_setting(id, db, cursor):
     return result[0][1], result[0][2], result[0][3]
 
 
+def update_setting(id, vt, vs, vr, db, cursor):
+    sql = "UPDATE user_setting SET view_type='" + vt + "', view_status='" + vs + "', view_range=" + \
+          vr + " WHERE id=" + id
+    db_op.sql_execute(db, cursor, sql, True)
+    return
+
+
 def update_token(id, tkn, db, cursor):
     sql = "UPDATE users SET token='" + tkn + "', tokenExpire=DATE_ADD(NOW(), INTERVAL 7 DAY) WHERE id=" + id
     db_op.sql_execute(db, cursor, sql, True)
     return
 
 
-def clear_token(id, tkn, db, cursor):
-    sql = "SELECT COUNT(*) FROM users WHERE id=" + id + " AND token='" + tkn + "'"
-    result = db_op.sql_execute(db, cursor, sql, False)
-    if result[0][0] != 1:
-        return
+def clear_token(id, db, cursor):
     sql = "UPDATE users SET token='', tokenExpire=TIMESTAMP(0) WHERE id=" + id
     db_op.sql_execute(db, cursor, sql, True)
     return
@@ -60,6 +63,14 @@ def insert_user(usr, pwd, helper, db, cursor):
     sql = "INSERT INTO user_setting () VALUES ()"
     db_op.sql_execute(db, cursor, sql, True)
     return
+
+
+def auth_user(id, tkn, db, cursor):
+    sql = "SELECT COUNT(*) FROM users WHERE id=" + id + " AND token='" + tkn + "'"
+    result = db_op.sql_execute(db, cursor, sql, False)
+    if result[0][0] != 1:
+        return False
+    return True
 
 
 @blue_user.route('/login', methods=['POST'])
@@ -120,6 +131,20 @@ def logout():
     db, cursor = db_op.db_connect()
     if db is None or cursor is None:
         return json.dumps({"success": False, "msg": "資料庫錯誤"})
-    clear_token(str(request.values['uid']), request.values['token'], db, cursor)
+    if auth_user(str(request.values['uid']), request.values['token'], db, cursor):
+        clear_token(str(request.values['uid']), db, cursor)
     db_op.db_close(db)
     return json.dumps({"success": True, "msg": ""})
+
+
+@blue_user.route('/setting', methods=['POST'])
+def setting():
+    db, cursor = db_op.db_connect()
+    if db is None or cursor is None:
+        return json.dumps({"success": False, "msg": "資料庫錯誤"})
+    if auth_user(str(request.values['uid']), request.values['token'], db, cursor):
+        return json.dumps({"success": False, "msg": "無法更新使用者偏好設定"})
+    update_setting(str(request.values['uid']), request.values['view_type'], request.values['view_status'],
+                   str(request.values['view_range']), db, cursor)
+    db_op.db_close(db)
+    return json.dumps({"success": True, "msg": "使用者偏好設定已更新"})

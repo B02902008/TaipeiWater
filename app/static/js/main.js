@@ -92,6 +92,10 @@ function page_control() {
 		    hide_panel();
 		    show_sidebar();
             break;
+		case "setting":
+		    show_panel();
+		    show_sidebar();
+            break;
 		default:
 			break;
     }

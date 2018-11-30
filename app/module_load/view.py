@@ -20,3 +20,8 @@ def load_login():
 @blue_load.route('/register', methods=['GET'])
 def load_register():
     return render_template('register.html')
+
+
+@blue_load.route('/setting', methods=['GET'])
+def load_register():
+    return render_template('setting.html')

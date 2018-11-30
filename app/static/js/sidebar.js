@@ -17,6 +17,11 @@ $(document).ready(function () {
         $(event.target.parentElement).addClass("menu-selected");
         toggle_sidebar();
     });
+    $('#menu-setting').click(function () {
+        window.state = "setting";
+        page_control();
+        load_setting();
+    });
     $('#menu-logout').click(function () {
         $.ajax({
             url: "/user/logout",
