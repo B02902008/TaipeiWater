@@ -5,6 +5,8 @@ $(document).ready(function () {
 	window.token = getCookie('token');
 	window.login = false;
 	window.state = "login";
+	$('#panel-container').load("/load/panel");
+	$('#sidebar-container').load("/load/sidebar");
 	if ( window.token != null) {
         $.ajax({
             url: "/user/token",
@@ -69,7 +71,7 @@ function page_control() {
 		case "login":
 		    show_panel();
 		    hide_sidebar();
-            $('#panel-container').load("/load/panel");
+		    load_login();
             break;
 		case "register":
 		    show_panel();
@@ -79,7 +81,6 @@ function page_control() {
 		case "show":
 		    hide_panel();
 		    show_sidebar();
-            $('#sidebar-container').load("/load/sidebar");
             break;
 		default:
 			break;

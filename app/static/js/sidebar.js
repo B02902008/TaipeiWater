@@ -12,7 +12,6 @@ $(document).ready(function () {
     $('#sidebar-overlay').click(function () {
         toggle_sidebar();
     });
-    $('#menu-show_all').addClass("menu-selected");
     $('.menu-list-item').click(function (event) {
         $('.menu-list-item').removeClass("menu-selected");
         $(event.target.parentElement).addClass("menu-selected");
@@ -46,6 +45,7 @@ $(document).ready(function () {
             }
         });
     });
+    $('#menu-show_all').click();
 });
 function toggle_sidebar() {
     $('#sidebar-overlay').toggle();
