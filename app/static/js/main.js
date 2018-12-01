@@ -81,7 +81,9 @@ function page_control() {
 		case "login":
 		    show_panel();
 		    hide_sidebar();
-		    load_login();
+		    if (typeof window.load_login === "function") {
+                load_login();
+            }
             break;
 		case "register":
 		    show_panel();
