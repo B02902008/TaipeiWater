@@ -38,9 +38,32 @@ $(document).ready(function () {
         $('input:text[name=range]').prop('disabled', true);
     } else {
         $('input:checkbox[name=range]').prop('checked', true);
-        $('input:text[name=range]').val(view_range_val);
+        $('input:text[name=range]').val(view_range_val * 1000);
     }
     $('input:checkbox[name=range]').click(function () {
-        $('input:text[name=range]').prop('disabled', ~$('input:checkbox[name=range]').prop("checked"));
+        $('input:text[name=range]').prop('disabled', !$('input:checkbox[name=range]').prop("checked"));
+    });
+    $('#setting-cancel-btn').click(function () {
+        window.state = 'clear';
+        page_control();
+    });
+    $('#setting-apply-btn').click(function () {
+        view_type_arr.forEach(function (val, idx) {
+            view_type_arr[idx] = $('input:checkbox[name=place][value=' + idx + ']').prop("checked");
+        });
+        view_status_arr.forEach(function (val, idx) {
+            view_status_arr[idx] = $('input:checkbox[name=status][value=' + idx + ']').prop("checked");
+        });
+        if (!window.help) {
+            view_status_arr[1] = false;
+            view_status_arr[2] = false;
+        }
+        if (!$('input:checkbox[name=range]').prop("checked"))
+            view_range_val = 0;
+        else {
+            tmp = $('input:text[name=range]').val().match(/\d+.?\d*/i);
+            view_range_val = (tmp == null) ? 0 : (parseFloat(tmp[0]) / 1000.0);
+        }
+        console.log(view_type_arr, view_status_arr, view_range_val);
     });
 });

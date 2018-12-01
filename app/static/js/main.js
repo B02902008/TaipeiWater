@@ -104,6 +104,11 @@ function page_control() {
 		    show_panel();
 		    show_sidebar();
             break;
+		case "clear":
+		    clear_panel();
+		    hide_panel();
+		    show_sidebar();
+            break;
 		default:
 			break;
     }
