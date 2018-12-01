@@ -6,14 +6,14 @@ import json
 
 
 def get_open_hour(wd, db, cursor):
-    sql = "SELECT type,from,to FROM open_hour WHERE weekday=" + wd
+    sql = "SELECT * FROM open_hour WHERE weekday=" + wd
     result = db_op.sql_execute(db, cursor, sql, False)
     dict = {}
     for re in result:
-        if re[0] in dict:
-            dict.get(re[0]).append((re[1], re[2]))
+        if re[1] in dict:
+            dict.get(re[1]).append((re[2], re[3]))
         else:
-            dict[re[0]] = [(re[1], re[2])]
+            dict[re[1]] = [(re[2], re[3])]
     return dict
 
 
