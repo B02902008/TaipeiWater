@@ -26,7 +26,9 @@ $(document).ready(function () {
                     window.view_range = obj.view_range;
 				    window.login = true;
 				    window.state = "show";
+                    initial_sidebar();
 				    page_control();
+                    initial_sidebar();
                 } else {
 				    alert(response.msg);
                 }
@@ -43,7 +45,9 @@ $(document).ready(function () {
     });
     $('#login-panel-visit').click(function () {
         window.state = "show";
+        initial_panel();
         page_control();
+        initial_sidebar();
     });
     function login_validate(username, password) {
         if (username === '' || password === '') {

@@ -10,3 +10,6 @@ function load_register() {
 function load_setting() {
     $('#control-panel').load("/load/setting");
 }
+function initial_panel() {
+    $('#control-panel').html('');
+}

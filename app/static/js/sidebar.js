@@ -30,7 +30,6 @@ $(document).ready(function () {
                 if (response.success) {
                     setCookie('token', '', -1);
                     window_reset();
-                    initial_sidebar();
                     page_control();
                 } else {
                     alert(response.msg);

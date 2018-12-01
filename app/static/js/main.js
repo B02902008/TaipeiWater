@@ -25,7 +25,9 @@ $(document).ready(function () {
                     window.view_range = obj.view_range;
                     window.login = true;
                     window.state = "show";
+                    initial_sidebar();
                     page_control();
+                    initial_sidebar();
                 } else {
                     alert(response.msg);
                     page_control();

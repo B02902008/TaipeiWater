@@ -4,11 +4,15 @@ $(document).ready(function () {
     let view_range_val = window.view_range;
     let tmp = true;
     view_type_arr.forEach(function (val, idx) {
-        $('input[type=checkbox][name=place][value='+ idx +']').prop("checked", val);
+        $('input:checkbox[name=place][value='+ idx +']').prop("checked", val);
         tmp = tmp & val;
     });
-    $("input[type=checkbox][name=place-all]").prop("checked", tmp);
-    $("input[type=checkbox][name=place-all]").click(function() {
-        $("input[name=place]").prop("checked", $("input[type=checkbox][name=place-all]").prop("checked"));
+    $('input:checkbox[name=place-all]').prop("checked", tmp);
+    $('input:checkbox[name=place-all]').click(function() {
+        $('input:checkbox[name=place]').prop("checked", $('input:checkbox[name=place-all]').prop("checked"));
+    });
+    $('input:checkbox[name=place]').click(function () {
+        $('input:checkbox[name=place-all]').prop("checked",
+            $("input:checkbox:checked[name=place]").length === view_type_arr.length);
     });
 });
