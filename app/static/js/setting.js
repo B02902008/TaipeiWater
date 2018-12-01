@@ -34,4 +34,13 @@ $(document).ready(function () {
         $('input:checkbox[name=status-all]').prop("checked",
             $("input:checkbox:checked[name=status]").length === view_status_arr.length);
     });
+    if (view_range_val == 0) {
+        $('input:text[name=range]').prop('disabled', true);
+    } else {
+        $('input:checkbox[name=range]').prop('checked', true);
+        $('input:text[name=range]').val(view_range_val);
+    }
+    $('input:checkbox[name=range]').click(function () {
+        $('input:text[name=range]').prop('disabled', ~$('input:checkbox[name=range]').prop("checked"));
+    });
 });
