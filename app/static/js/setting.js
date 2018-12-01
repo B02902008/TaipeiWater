@@ -65,6 +65,30 @@ $(document).ready(function () {
             tmp = $('input:text[name=range]').val().match(/\d+.?\d*/i);
             window.view_range = (tmp == null) ? 0 : (parseFloat(tmp[0]) / 1000.0);
         }
-        console.log(window.view_type, window.view_status, window.view_range);
+        $.ajax({
+			url: "/user/setting",
+            type: "POST",
+			dataType: "JSON",
+            async: false,
+			data: {
+			    uid: window.uid,
+                token: window.token,
+				view_type: window.view_type,
+				view_status: window.view_status,
+                view_range: window.view_range
+			},
+			success: function(response) {
+				if (response.success) {
+				    alert(response.msg);
+                    window.state = 'clear';
+                    page_control();
+                } else {
+				    alert(response.msg);
+                }
+            },
+			error: function(response) {
+				console.log(response);
+            }
+		});
     });
 });
