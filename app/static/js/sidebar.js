@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    initial_sidebar();
     $('#sidebar-btn').click(function () {
         toggle_sidebar();
         $('#sidebar-btn').blur();
@@ -48,7 +47,8 @@ function initial_sidebar() {
     } else if (!window.help) {
         $('#menu-report').hide();
     }
-    $('#menu-show_all').click();
+    $('.menu-list-item').removeClass("menu-selected");
+    $('#menu-show_all').addClass("menu-selected");
 }
 function toggle_sidebar() {
     $('#sidebar-overlay').toggle();

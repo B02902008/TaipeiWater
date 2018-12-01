@@ -1,6 +1,3 @@
-$(document).ready(function () {
-    load_login();
-});
 function load_login() {
     $('#control-panel').load("/load/login");
 }
@@ -10,6 +7,6 @@ function load_register() {
 function load_setting() {
     $('#control-panel').load("/load/setting");
 }
-function initial_panel() {
+function clear_panel() {
     $('#control-panel').html('');
 }

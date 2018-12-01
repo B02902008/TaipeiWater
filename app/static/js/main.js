@@ -1,45 +1,11 @@
 'use strict';
 $(document).ready(function () {
     window_reset();
-	window.token = getCookie('token');
-	$('#panel-container').load("/load/panel");
-	$('#sidebar-container').load("/load/sidebar");
-	if ( window.token != null) {
-        $.ajax({
-            url: "/user/token",
-            type: "POST",
-            dataType: "JSON",
-            async: false,
-            data: {
-                token: window.token,
-            },
-            success: function(response) {
-                if (response.success) {
-                    let obj = response.msg;
-                    setCookie('token', obj.token, 7);
-                    window.uid = obj.uid;
-                    window.help = obj.help;
-                    window.token = obj.token;
-                    window.view_type = obj.view_type;
-                    window.view_status = obj.view_status;
-                    window.view_range = obj.view_range;
-                    window.login = true;
-                    window.state = "show";
-                    initial_sidebar();
-                    page_control();
-                    initial_sidebar();
-                } else {
-                    alert(response.msg);
-                    page_control();
-                }
-            },
-            error: function(response) {
-                console.log(response);
-            }
+	$('#panel-container').load("/load/panel", function () {
+        $('#sidebar-container').load("/load/sidebar", function () {
+            login_token();
         });
-	} else {
-        page_control();
-	}
+    });
 });
 function window_reset() {
     window.uid = -1;
@@ -78,12 +44,47 @@ function getCookie(name) {
     }
     return null;
 }
+function login_token() {
+    window.token = getCookie('token');
+	if ( window.token != null) {
+        $.ajax({
+            url: "/user/token",
+            type: "POST",
+            dataType: "JSON",
+            async: false,
+            data: {
+                token: window.token,
+            },
+            success: function(response) {
+                if (response.success) {
+                    let obj = response.msg;
+                    setCookie('token', obj.token, 7);
+                    window.uid = obj.uid;
+                    window.help = obj.help;
+                    window.token = obj.token;
+                    window.view_type = obj.view_type;
+                    window.view_status = obj.view_status;
+                    window.view_range = obj.view_range;
+                    window.login = true;
+                    window.state = "show";
+                    page_control();
+                } else {
+                    alert(response.msg);
+                    page_control();
+                }
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        });
+	} else {
+        page_control();
+	}
+}
 function page_control() {
 	switch (window.state) {
 		case "login":
-		    if (typeof window.load_login === "function") {
-                load_login();
-            }
+            load_login();
 		    show_panel();
 		    hide_sidebar();
             break;
@@ -93,10 +94,12 @@ function page_control() {
 		    hide_sidebar();
             break;
 		case "show":
+		    initial_sidebar();
 		    hide_panel();
 		    show_sidebar();
             break;
 		case "setting":
+		    clear_panel();
             load_setting();
 		    show_panel();
 		    show_sidebar();
