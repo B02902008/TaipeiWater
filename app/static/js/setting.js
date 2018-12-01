@@ -82,6 +82,7 @@ $(document).ready(function () {
 				    alert(response.msg);
                     window.state = 'clear';
                     page_control();
+                    click_showall();
                 } else {
 				    alert(response.msg);
                 }

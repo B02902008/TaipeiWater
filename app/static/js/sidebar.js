@@ -50,6 +50,9 @@ function initial_sidebar() {
     $('.menu-list-item').removeClass("menu-selected");
     $('#menu-show_all').addClass("menu-selected");
 }
+function click_showall() {
+    $('#menu-show_all').click();
+}
 function toggle_sidebar() {
     $('#sidebar-overlay').toggle();
     $('#sidebar-wrapper').toggleClass('toggled');
