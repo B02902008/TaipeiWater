@@ -97,6 +97,7 @@ function page_control() {
 		case "setting":
 		    show_panel();
 		    show_sidebar();
+            load_setting();
             break;
 		default:
 			break;

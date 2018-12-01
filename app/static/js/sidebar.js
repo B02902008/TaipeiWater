@@ -1,10 +1,5 @@
 $(document).ready(function () {
-    if (!window.login) {
-        $('#menu-report').hide();
-        $('#menu-logout').hide();
-    } else if (!window.help) {
-        $('#menu-report').hide();
-    }
+    initial_sidebar();
     $('#sidebar-btn').click(function () {
         toggle_sidebar();
         $('#sidebar-btn').blur();
@@ -20,7 +15,6 @@ $(document).ready(function () {
     $('#menu-setting').click(function () {
         window.state = "setting";
         page_control();
-        load_setting();
     });
     $('#menu-logout').click(function () {
         $.ajax({
@@ -36,6 +30,7 @@ $(document).ready(function () {
                 if (response.success) {
                     setCookie('token', '', -1);
                     window_reset();
+                    initial_sidebar();
                     page_control();
                 } else {
                     alert(response.msg);
@@ -46,8 +41,16 @@ $(document).ready(function () {
             }
         });
     });
-    $('#menu-show_all').click();
 });
+function initial_sidebar() {
+    if (!window.login) {
+        $('#menu-report').hide();
+        $('#menu-logout').hide();
+    } else if (!window.help) {
+        $('#menu-report').hide();
+    }
+    $('#menu-show_all').click();
+}
 function toggle_sidebar() {
     $('#sidebar-overlay').toggle();
     $('#sidebar-wrapper').toggleClass('toggled');
