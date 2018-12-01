@@ -16,6 +16,9 @@ function window_reset() {
     window.view_range = 0;
     window.login = false;
     window.state = "login";
+    window.data_raw = [];
+    window.data_filter = [];
+    window.data_view = [];
 }
 function hide_panel() {
     $('#panel-container').hide();
@@ -66,7 +69,7 @@ function login_token() {
                     window.view_status = obj.view_status;
                     window.view_range = obj.view_range;
                     window.login = true;
-                    window.state = "show";
+                    window.state = "init";
                     page_control();
                 } else {
                     alert(response.msg);
@@ -81,6 +84,24 @@ function login_token() {
         page_control();
 	}
 }
+function data_request() {
+    $.ajax({
+        url: "/util/data",
+        type: "GET",
+        dataType: "JSON",
+        async: false,
+        data: {},
+        success: function(response) {
+            if (response.success) {
+            } else {
+                alert(response.msg);
+            }
+        },
+        error: function(response) {
+            console.log(response);
+        }
+    });
+}
 function page_control() {
 	switch (window.state) {
 		case "login":
@@ -93,7 +114,8 @@ function page_control() {
 		    show_panel();
 		    hide_sidebar();
             break;
-		case "show":
+		case "init":
+		    data_request();
 		    initial_sidebar();
 		    hide_panel();
 		    show_sidebar();
