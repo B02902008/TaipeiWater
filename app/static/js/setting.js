@@ -48,22 +48,23 @@ $(document).ready(function () {
         page_control();
     });
     $('#setting-apply-btn').click(function () {
+        tmp = '';
         view_type_arr.forEach(function (val, idx) {
-            view_type_arr[idx] = $('input:checkbox[name=place][value=' + idx + ']').prop("checked");
+            tmp += $('input:checkbox[name=place][value=' + idx + ']').prop("checked") ? '1' : '0';
         });
+        window.view_type = tmp;
+        tmp = '';
         view_status_arr.forEach(function (val, idx) {
-            view_status_arr[idx] = $('input:checkbox[name=status][value=' + idx + ']').prop("checked");
+            tmp += (!window.help && idx > 0) ? '0' :
+                ($('input:checkbox[name=status][value=' + idx + ']').prop("checked") ? '1' : '0');
         });
-        if (!window.help) {
-            view_status_arr[1] = false;
-            view_status_arr[2] = false;
-        }
+        window.view_status = tmp;
         if (!$('input:checkbox[name=range]').prop("checked"))
-            view_range_val = 0;
+            window.view_range = 0;
         else {
             tmp = $('input:text[name=range]').val().match(/\d+.?\d*/i);
-            view_range_val = (tmp == null) ? 0 : (parseFloat(tmp[0]) / 1000.0);
+            window.view_range = (tmp == null) ? 0 : (parseFloat(tmp[0]) / 1000.0);
         }
-        console.log(view_type_arr, view_status_arr, view_range_val);
+        console.log(window.view_type, window.view_status, window.view_range);
     });
 });
