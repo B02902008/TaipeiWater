@@ -79,25 +79,25 @@ function getCookie(name) {
 function page_control() {
 	switch (window.state) {
 		case "login":
-		    show_panel();
-		    hide_sidebar();
 		    if (typeof window.load_login === "function") {
                 load_login();
             }
-            break;
-		case "register":
 		    show_panel();
 		    hide_sidebar();
+            break;
+		case "register":
             load_register();
+		    show_panel();
+		    hide_sidebar();
             break;
 		case "show":
 		    hide_panel();
 		    show_sidebar();
             break;
 		case "setting":
+            load_setting();
 		    show_panel();
 		    show_sidebar();
-            load_setting();
             break;
 		default:
 			break;
