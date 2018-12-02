@@ -24,13 +24,13 @@
                     navigator.geolocation.getCurrentPosition(function(position) {
                         window.curPosition.lat = position.coords.latitude;
                         window.curPosition.lng = position.coords.longitude;
-                        map.panTo(window.curPosition);
+                        map.panTo(new google.maps.LatLng(window.curPosition.lat, window.curPosition.lng));
                     });
                 if ('curMarker' in window)
                     window.curMarker.setPosition(new google.maps.LatLng(window.curPosition.lat, window.curPosition.lng));
                 else
                     window.curMarker = new google.maps.Marker({
-                        position: window.curPosition,
+                        position: new google.maps.LatLng(window.curPosition.lat, window.curPosition.lng),
                         icon: "{{url_for('static', filename='img/current-marker.png')}}",
                         map: window.map
                     });
