@@ -32,7 +32,7 @@
                     window.curMarker = new google.maps.Marker({
                         position: window.curPosition,
                         icon: "{{url_for('static', filename='img/current-marker.png')}}",
-                        map: map
+                        map: window.map
                     });
             }
 			function initMap() {
