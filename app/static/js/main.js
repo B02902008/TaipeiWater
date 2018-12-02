@@ -84,7 +84,7 @@ function login_token() {
         page_control();
 	}
 }
-function data_request() {
+function data_request_show() {
     $.ajax({
         url: "/util/data",
         type: "GET",
@@ -94,6 +94,10 @@ function data_request() {
         success: function(response) {
             if (response.success) {
                 window.data_raw = response.msg;
+                data_filter();
+                markers_clear();
+                window.data_view = window.data_filtered;
+                data_show();
             } else {
                 alert(response.msg);
             }
@@ -158,15 +162,14 @@ function page_control() {
 		    hide_sidebar();
             break;
 		case "init":
-		    data_request();
-		    data_filter();
+		    data_request_show();
 		    initial_sidebar();
 		    hide_panel();
+		    clear_panel();
 		    show_sidebar();
 		    click_showall();
             break;
 		case "setting":
-		    clear_panel();
             load_setting();
 		    show_panel();
 		    show_sidebar();
@@ -175,9 +178,13 @@ function page_control() {
 		    clear_panel();
 		    hide_panel();
 		    show_sidebar();
-		    data_request();
-		    data_filter();
+		    data_request_show();
 		    click_showall();
+            break;
+        case "clear":
+		    clear_panel();
+		    hide_panel();
+		    show_sidebar();
             break;
 		default:
 			break;

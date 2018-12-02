@@ -11,9 +11,7 @@ $(document).ready(function () {
         $(event.target.parentElement).addClass("menu-selected");
         toggle_sidebar();
     });
-    $('#menu-show_all').click(function () {
-
-    });
+    $('#menu-show_all').click(showall_click_func);
     $('#menu-setting').click(function () {
         window.state = "setting";
         page_control();
@@ -53,14 +51,10 @@ function initial_sidebar() {
     }
 }
 function showall_click_func() {
-    markers_clear();
-    window.data_view = window.data_filtered;
-    data_show();
 }
 function click_showall() {
     $('.menu-list-item').removeClass("menu-selected");
     $('#menu-show_all').addClass("menu-selected");
-    showall_click_func();
 }
 function toggle_sidebar() {
     $('#sidebar-overlay').toggle();
