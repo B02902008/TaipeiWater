@@ -1,0 +1,24 @@
+<div id="navigate-panel-body">
+    <span>導航至飲水機</span>
+    <div class="panel-tag">
+        <div class="panel-tag-before"></div>
+        <div class="panel-tag-middle">指定導航方式&nbsp;</div>
+        <div class="panel-tag-after"></div>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="navigate-way" value="0" checked>導航至距離最近的飲水機</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="navigate-way" value="1">導航至編號</label>
+        <input type="text" class="inline-text" name="index">
+        <label>的飲水機</label>
+    </div>
+    <div class="col-xs-6 panel-btn-container"><button type="button" class="btn btn-danger" id="navigate-cancel-btn">
+        <span class="glyphicon glyphicon-remove"></span>&nbsp;取消
+    </button></div>
+    <div class="col-xs-6 panel-btn-container"><button type="button" class="btn btn-success" id="navigate-apply-btn">
+        <span class="glyphicon glyphicon-ok"></span>&nbsp;確認
+    </button></div>
+</div>
+<script src="{{url_for('static', filename='js/navigate.js')}}"></script>
+<link rel="stylesheet" href="{{url_for('static', filename='css/navigate.css')}}">

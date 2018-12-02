@@ -30,3 +30,8 @@ def load_setting():
 @blue_load.route('/target', methods=['GET'])
 def load_target():
     return render_template('target.html')
+
+
+@blue_load.route('/navigate', methods=['GET'])
+def load_navigate():
+    return render_template('navigate.html')

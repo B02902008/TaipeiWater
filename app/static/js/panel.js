@@ -4,6 +4,9 @@ function load_login() {
 function load_register() {
     $('#control-panel').load("/load/register");
 }
+function load_navigate() {
+    $('#control-panel').load("/load/navigate");
+}
 function load_target() {
     $('#control-panel').load("/load/target");
 }

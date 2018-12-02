@@ -17,6 +17,9 @@
 		<div id="map"></div>
 		<script>
 			window.map;
+			window.geocoder = new google.maps.Geocoder();
+			window.directionsService = new google.maps.DirectionsService();
+			window.directionsDisplay = new google.maps.DirectionsRenderer();
 			window.markers = [];
 			window.curPosition = {};
 			window.targetPosition = {};
@@ -41,9 +44,25 @@
 			    let geocoder = new google.maps.Geocoder();
                 geocoder.geocode({'address': address}, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
-                        callback(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+                        callback(results[0].geometry.location.lat(), results[0].geometry.location.lng(), status);
                     } else {
-                        callback(null, null);
+                        callback(null, null, status);
+                    }
+                });
+            }
+            function draw_navigation() {
+			    let directionsService = new google.maps.DirectionsService();
+                let directionsDisplay = new google.maps.DirectionsRenderer();
+                directionsDisplay.setMap(map);
+                directionsService.route({
+                    origin: document.getElementById('start').value,
+                    destination: document.getElementById('end').value,
+                    travelMode: 'WALKING'
+                }, function(response, status) {
+                    if (status === 'OK') {
+                        directionsDisplay.setDirections(response);
+                    } else {
+                        window.alert('Directions request failed due to ' + status);
                     }
                 });
             }

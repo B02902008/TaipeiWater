@@ -206,6 +206,11 @@ function page_control() {
 		    show_sidebar();
 		    click_showall();
             break;
+		case "navigate":
+            load_navigate();
+		    show_panel();
+		    show_sidebar();
+            break;
 		case "target":
             load_target();
 		    show_panel();

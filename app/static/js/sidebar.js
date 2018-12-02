@@ -12,6 +12,10 @@ $(document).ready(function () {
         toggle_sidebar();
     });
     $('#menu-show_all').click(showall_click_func);
+    $('#menu-navigate').click(function () {
+        window.state = "navigate";
+        page_control();
+    });
     $('#menu-target').click(function () {
         window.state = "target";
         page_control();
