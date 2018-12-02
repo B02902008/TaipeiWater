@@ -139,8 +139,6 @@ function distance(p1, p2) {
     s = Math.round(s * 10000) / 10000;
     return s;
 }
-// 调用 return的距离单位为km
-GetDistance(10.0,113.0,12.0,114.0)
 function page_control() {
 	switch (window.state) {
 		case "login":
