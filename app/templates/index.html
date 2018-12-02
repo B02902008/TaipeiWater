@@ -18,7 +18,7 @@
 		<script>
 			var map;
 			function initMap() {
-				map = new google.maps.Map(document.getElementById('map'), {
+				window.map = new google.maps.Map(document.getElementById('map'), {
 				center: {lat: 25.05, lng: 121.53},
 				zoom: 13,
 				disableDefaultUI: true});

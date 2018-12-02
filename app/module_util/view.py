@@ -18,20 +18,34 @@ def get_open_hour(wd, db, cursor):
 
 
 def get_data(aoh, oh, db, cursor):
-    dict = {"D": [], "U": []}
+    dict = []
     sql = "SELECT * FROM fountain_default"
     result = db_op.sql_execute(db, cursor, sql, False)
     for re in result:
         if re[4] in aoh:
-            dict["D"].append({"config": {"position": {"lat": re[5], "lng": re[6]},
-                                         "title": "D" + str(re[0]).zfill(4)},
-                              "info": {"id": "D" + str(re[0]).zfill(4),
-                                       "place": re[1],
-                                       "type": re[2],
-                                       "location": re[3],
-                                       "open": open_hour_2string(oh[re[4]]),
-                                       "number": re[7],
-                                       "status": re[8]}})
+            dict.append({"config": {"position": {"lat": re[5], "lng": re[6]},
+                                    "title": "D" + str(re[0]).zfill(4)},
+                         "info": {"id": "D" + str(re[0]).zfill(4),
+                                  "place": re[1],
+                                  "type": re[2],
+                                  "location": re[3],
+                                  "open": open_hour_2string(oh[re[4]]),
+                                  "number": re[7],
+                                  "status": re[8]}})
+    sql = "SELECT * FROM fountain_user"
+    result = db_op.sql_execute(db, cursor, sql, False)
+    for re in result:
+        if re[4] in aoh:
+            dict.append({"config": {"position": {"lat": re[5], "lng": re[6]},
+                                    "title": "U" + str(re[0]).zfill(4)},
+                         "info": {"id": "U" + str(re[0]).zfill(4),
+                                  "place": re[1],
+                                  "type": re[2],
+                                  "location": re[3],
+                                  "open": open_hour_2string(oh[re[4]]),
+                                  "number": re[7],
+                                  "status": re[8]},
+                         "report": re[9]})
     return dict
 
 

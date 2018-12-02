@@ -17,7 +17,7 @@ function window_reset() {
     window.login = false;
     window.state = "login";
     window.data_raw = [];
-    window.data_filter = [];
+    window.data_filtered = [];
     window.data_view = [];
 }
 function hide_panel() {
@@ -93,13 +93,23 @@ function data_request() {
         data: {},
         success: function(response) {
             if (response.success) {
-                console.log(response.msg);
+                window.data_raw = response.msg;
             } else {
                 alert(response.msg);
             }
         },
         error: function(response) {
             console.log(response);
+        }
+    });
+}
+function data_filter() {
+    let view_type_arr = window.view_type.split("").map(function(x){return(x==="1");});
+    let view_type_map = {0: '開放空間', 1: '學校', 2: '運動中心', 3 : '醫院', 4: '政府機關',
+        5: '捷運站', 6: '公共設施', 7: '圖書館', 8: '其他'};
+    window.data_filtered = window.data_raw.filter(function (x) {
+        if (view[x.info.type]) {
+            return x;
         }
     });
 }
@@ -117,6 +127,7 @@ function page_control() {
             break;
 		case "init":
 		    data_request();
+		    data_filter();
 		    initial_sidebar();
 		    hide_panel();
 		    show_sidebar();
