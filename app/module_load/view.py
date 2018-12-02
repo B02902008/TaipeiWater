@@ -25,3 +25,8 @@ def load_register():
 @blue_load.route('/setting', methods=['GET'])
 def load_setting():
     return render_template('setting.html')
+
+
+@blue_load.route('/target', methods=['GET'])
+def load_target():
+    return render_template('target.html')

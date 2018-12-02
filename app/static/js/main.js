@@ -14,6 +14,7 @@ function window_reset() {
     window.view_type = '111111111';
     window.view_status = '100';
     window.view_range = 0;
+    window.target_range = 0;
     window.login = false;
     window.state = "login";
     window.data_raw = [];

@@ -1,0 +1,22 @@
+<div id="target-panel-body">
+    <span>指定場所附近的飲水機</span>
+    <div class="panel-tag">
+        <div class="panel-tag-before"></div>
+        <div class="panel-tag-middle">指定場所和範圍&nbsp;</div>
+        <div class="panel-tag-after"></div>
+    </div>
+    <input type="text" class="form-control" placeholder="請輸入完整名稱或地址" name="target">
+    <div class="row-div">
+        <span>顯示</span>
+        <input type="text" class="inline-text" placeholder="500" name="range">
+        <span>公尺內</span>
+    </div>
+    <div class="col-xs-6 panel-btn-container"><button type="button" class="btn btn-danger" id="target-cancel-btn">
+        <span class="glyphicon glyphicon-remove"></span>&nbsp;取消
+    </button></div>
+    <div class="col-xs-6 panel-btn-container"><button type="button" class="btn btn-success" id="target-apply-btn">
+        <span class="glyphicon glyphicon-ok"></span>&nbsp;確認
+    </button></div>
+</div>
+<script src="{{url_for('static', filename='js/target.js')}}"></script>
+<link rel="stylesheet" href="{{url_for('static', filename='css/target.css')}}">
