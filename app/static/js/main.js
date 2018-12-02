@@ -95,7 +95,6 @@ function data_request_show() {
             if (response.success) {
                 window.data_raw = response.msg;
                 data_filter();
-                console.log(window.data_filtered);
                 markers_clear();
                 window.data_view = window.data_filtered;
                 data_show();
@@ -139,7 +138,19 @@ function data_show() {
     window.data_view.forEach(function (val, idx) {
         window.markers[idx] = new google.maps.Marker(val.config);
         window.markers[idx].setMap(window.map);
+        window.markers[idx].addListener('click', function() {
+          info2string(val.info).open(map, window.markers[idx]);
+        });
     });
+}
+function info2string(info) {
+    let str = '';
+    str += '飲水機編號：' + info.id + '<br>';
+    str += '設置場所：' + info.place + '(' + info.type + ')<br>';
+    str += '本日開放時段：' + info.open + '<br>';
+    str += '設置台數：' + info.number + '(' + info.status + ')<br>';
+    str += '設置位置：' + info.location;
+    return str;
 }
 function distance(p1, p2) {
     let radLat1 = p1.lat * Math.PI / 180.0;
