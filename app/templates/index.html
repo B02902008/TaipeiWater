@@ -45,10 +45,10 @@
                     }
                 });
             }
-            function draw_navigation() {
+            function draw_navigation(p1, p2) {
                 window.directionsService.route({
-                    origin: document.getElementById('start').value,
-                    destination: document.getElementById('end').value,
+                    origin: p1,
+                    destination: p2,
                     travelMode: 'WALKING'
                 }, function(response, status) {
                     if (status === 'OK') {

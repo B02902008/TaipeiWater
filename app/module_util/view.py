@@ -62,7 +62,7 @@ def data():
     if db is None or cursor is None:
         return json.dumps({"success": False, "msg": "資料庫錯誤"})
     weekday = (datetime.datetime.today().weekday() + 1) % 7
-    time = str(datetime.datetime.today().hour) + str(datetime.datetime.today().minute)
+    time = str(datetime.datetime.today().hour).zfill(2) + str(datetime.datetime.today().minute).zfill(2)
     open_hour = get_open_hour(str(weekday), db, cursor)
     available_open_hour = []
     for key in open_hour.keys():
