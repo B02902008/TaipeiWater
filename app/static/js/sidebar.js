@@ -11,6 +11,9 @@ $(document).ready(function () {
         $(event.target.parentElement).addClass("menu-selected");
         toggle_sidebar();
     });
+    $('#menu-show_all').click(function () {
+
+    });
     $('#menu-setting').click(function () {
         window.state = "setting";
         page_control();
@@ -41,17 +44,19 @@ $(document).ready(function () {
     });
 });
 function initial_sidebar() {
+    $('.menu-list-item').show();
     if (!window.login) {
         $('#menu-report').hide();
         $('#menu-logout').hide();
     } else if (!window.help) {
         $('#menu-report').hide();
     }
-    $('.menu-list-item').removeClass("menu-selected");
-    $('#menu-show_all').addClass("menu-selected");
 }
 function click_showall() {
-    $('#menu-show_all').click();
+    $('.menu-list-item').removeClass("menu-selected");
+    $('#menu-show_all').addClass("menu-selected");
+    window.data_view = window.data_filtered;
+    data_show();
 }
 function toggle_sidebar() {
     $('#sidebar-overlay').toggle();

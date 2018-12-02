@@ -16,16 +16,17 @@
 		<div id="sidebar-container"></div>
 		<div id="map"></div>
 		<script>
-			var map;
+			window.map;
+			window.markers = [];
 			function initMap() {
-				window.map = new google.maps.Map(document.getElementById('map'), {
+				map = new google.maps.Map(document.getElementById('map'), {
 				center: {lat: 25.05, lng: 121.53},
 				zoom: 13,
 				disableDefaultUI: true});
 			}
 		</script>
-<!--
+
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb8KGF-DC8hE96MLbr4hVHwNBIBpdQgMQ&callback=initMap" async defer></script>
--->
+
 	</body>
 </html>

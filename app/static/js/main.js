@@ -119,6 +119,12 @@ function data_filter() {
         }
     });
 }
+function data_show() {
+    window.data_view.forEach(function (val, idx) {
+        window.markers[idx] = new google.maps.Marker(val.config);
+        window.markers[i].setMap(window.map);
+    });
+}
 function page_control() {
 	switch (window.state) {
 		case "login":
@@ -137,6 +143,7 @@ function page_control() {
 		    initial_sidebar();
 		    hide_panel();
 		    show_sidebar();
+		    click_showall();
             break;
 		case "setting":
 		    clear_panel();
