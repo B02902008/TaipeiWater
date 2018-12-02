@@ -187,6 +187,11 @@ function page_control() {
 		    show_sidebar();
 		    click_showall();
             break;
+		case "target":
+            load_target();
+		    show_panel();
+		    show_sidebar();
+            break;
 		case "setting":
             load_setting();
 		    show_panel();
