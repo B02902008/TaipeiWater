@@ -97,7 +97,6 @@ function data_request_show() {
                 window.data_raw = response.msg;
                 data_filter();
                 markers_clear();
-                window.data_view = window.data_filtered;
                 data_show();
             } else {
                 alert(response.msg);
@@ -117,8 +116,7 @@ function data_filter() {
     window.data_filtered = window.data_raw.filter(function (x) {
         let tmp1 = view_type_arr[x.info.type];
         let tmp2 = view_status_arr[1 - x.info.status];
-        let tmp3 = (window.view_range == 0) ? true : (distance(x.config.position, window.curPosition) <= window.view_range);
-        if (tmp1 && tmp2 && tmp3) {
+        if (tmp1 && tmp2) {
             x.info.type = view_type_map[x.info.type];
             x.info.status = view_status_map[1 - x.info.status];
             if (x.info.number == 0)
@@ -132,7 +130,6 @@ function data_target_show() {
         if (distance(x.config.position, window.targetPosition) <= window.target_range)
             return x;
     });
-    markers_clear();
     map.panTo(window.targetPosition);
     window.data_view.forEach(function (val, idx) {
         window.markers[idx] = new google.maps.Marker(val.config);
@@ -152,6 +149,10 @@ function markers_clear() {
     window.markers = [];
 }
 function data_show() {
+    window.data_view = window.data_filtered.filter(function (x) {
+        if ((window.view_range == 0) ? true : (distance(x.config.position, window.curPosition) <= window.view_range))
+            return x;
+    });
     if (window.view_range != 0)
         update_position();
     window.data_view.forEach(function (val, idx) {
@@ -214,6 +215,7 @@ function page_control() {
             clear_panel();
             hide_panel();
             show_sidebar();
+            markers_clear();
             data_target_show();
             break;
 		case "setting":

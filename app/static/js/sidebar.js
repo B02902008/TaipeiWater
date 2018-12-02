@@ -57,7 +57,6 @@ function initial_sidebar() {
 }
 function showall_click_func() {
     markers_clear();
-    window.data_view = window.data_filtered;
     data_show();
 }
 function click_showall() {
