@@ -54,7 +54,7 @@ def data():
     for key in open_hour.keys():
         tmp = False
         for pair in open_hour[key]:
-            if pair[0] <= time <= pair[2]:
+            if pair[0] <= time <= pair[1]:
                 tmp = True
         if tmp:
             available_open_hour.append(key)
