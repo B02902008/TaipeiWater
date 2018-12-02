@@ -16,7 +16,7 @@ $(document).ready(function () {
                 page_control();
             } else {
                 update_position();
-                draw_navigation(window.curPosition, data.config.position);
+                draw_navigation(window.curPosition, data.config.position, data);
                 window.state = 'clear';
                 page_control();
             }
@@ -29,7 +29,7 @@ $(document).ready(function () {
                 page_control();
             } else {
                 update_position();
-                draw_navigation(window.curPosition, data.config.position);
+                draw_navigation(window.curPosition, data.config.position, data);
                 window.state = 'clear';
                 page_control();
             }

@@ -38,7 +38,7 @@ $(document).ready(function () {
                 if (response.success) {
                     setCookie('token', '', -1);
                     window_reset();
-                    markers_clear();
+                    map_clear();
                     page_control();
                 } else {
                     alert(response.msg);
@@ -60,7 +60,7 @@ function initial_sidebar() {
     }
 }
 function showall_click_func() {
-    markers_clear();
+    map_clear();
     data_show();
 }
 function click_showall() {

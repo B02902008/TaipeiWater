@@ -45,14 +45,24 @@
                     }
                 });
             }
-            function draw_navigation(p1, p2) {
+            function draw_navigation(p1, p2, m) {
                 window.directionsService.route({
                     origin: p1,
                     destination: p2,
                     travelMode: 'WALKING'
                 }, function(response, status) {
                     if (status === 'OK') {
+                        markers_clear();
+                        window.markers[0] = new google.maps.Marker(m.config);
+                        window.markers[0].setMap(window.map);
+                        window.markers[0].addListener('click', function() {
+                            let infowindow = new google.maps.InfoWindow({
+                                content: info2string(m.info)
+                            });
+                            infowindow.open(map, window.markers[idx]);
+                        });
                         window.directionsDisplay.setDirections(response);
+                        window.directionsDisplay.setMap(window.map);
                     } else {
                         window.alert('Directions request failed due to ' + status);
                     }
@@ -66,7 +76,6 @@
                 window.geocoder = new google.maps.Geocoder();
                 window.directionsService = new google.maps.DirectionsService();
                 window.directionsDisplay = new google.maps.DirectionsRenderer();
-                directionsDisplay.setMap(map);
 				update_position();
 			}
 		</script>

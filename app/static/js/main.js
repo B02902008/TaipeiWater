@@ -96,7 +96,7 @@ function data_request_show() {
             if (response.success) {
                 window.data_raw = response.msg;
                 data_filter();
-                markers_clear();
+                map_clear();
                 data_show();
             } else {
                 alert(response.msg);
@@ -147,6 +147,10 @@ function markers_clear() {
         window.markers[idx].setMap(null);
     });
     window.markers = [];
+}
+function map_clear() {
+    markers_clear();
+    window.directionsDisplay.setMap(null);
 }
 function data_show() {
     window.data_view = window.data_filtered.filter(function (x) {
@@ -246,7 +250,7 @@ function page_control() {
             clear_panel();
             hide_panel();
             show_sidebar();
-            markers_clear();
+            map_clear();
             data_target_show();
             break;
 		case "setting":
