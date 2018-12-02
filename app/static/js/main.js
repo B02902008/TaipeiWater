@@ -127,6 +127,24 @@ function data_filter() {
         }
     });
 }
+function data_target_show() {
+    window.data_view = window.data_filtered.filter(function (x) {
+        if (distance(x.config.position, window.targetPosition) <= window.target_range)
+            return x;
+    });
+    markers_clear();
+    map.panTo(window.targetPosition);
+    window.data_view.forEach(function (val, idx) {
+        window.markers[idx] = new google.maps.Marker(val.config);
+        window.markers[idx].setMap(window.map);
+        window.markers[idx].addListener('click', function() {
+            let infowindow = new google.maps.InfoWindow({
+                content: info2string(val.info)
+            });
+            infowindow.open(map, window.markers[idx]);
+        });
+    });
+}
 function markers_clear() {
     window.markers.forEach(function (val, idx) {
         window.markers[idx].setMap(null);

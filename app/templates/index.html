@@ -17,8 +17,10 @@
 		<div id="map"></div>
 		<script>
 			window.map;
+			window.geocoder = new google.maps.Geocoder();
 			window.markers = [];
 			window.curPosition = {};
+			window.targetPosition = {};
 			function update_position() {
                 if (navigator.geolocation)
                     navigator.geolocation.getCurrentPosition(function(position) {
@@ -35,6 +37,15 @@
                             });
                     });
 
+            }
+            function locate_target(address, callback) {
+                window.geocoder.geocode({'address': address}, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        callback(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+                    } else {
+                        callback(null, null);
+                    }
+                });
             }
 			function initMap() {
 				window.map = new google.maps.Map(document.getElementById('map'), {
