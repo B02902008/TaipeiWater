@@ -192,6 +192,12 @@ function page_control() {
 		    show_panel();
 		    show_sidebar();
             break;
+        case 'showtarget':
+            clear_panel();
+            hide_panel();
+            show_sidebar();
+            data_target_show();
+            break;
 		case "setting":
             load_setting();
 		    show_panel();
