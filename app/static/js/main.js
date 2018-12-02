@@ -113,7 +113,7 @@ function data_filter() {
     let view_type_map = {0: '開放空間', 1: '學校', 2: '運動中心', 3 : '醫院', 4: '政府機關',
         5: '捷運站', 6: '公共設施', 7: '圖書館', 8: '其他'};
     let view_status_map = {0: '可使用', 1: '待確認', 2: '暫停使用'};
-    console.log(view_type_arr, view_status_arr, data_raw);
+    console.log(view_type_arr, view_status_arr, window.data_raw);
     window.data_filtered = window.data_raw.filter(function (x) {
         let tmp1 = view_type_arr[x.info.type];
         let tmp2 = view_status_arr[1 - x.info.status];
@@ -126,6 +126,7 @@ function data_filter() {
             return x;
         }
     });
+    console.log(window.data_filtered);
 }
 function markers_clear() {
     window.markers.forEach(function (val, idx) {
