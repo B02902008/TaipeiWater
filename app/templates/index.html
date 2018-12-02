@@ -19,17 +19,20 @@
 			window.map;
 			window.markers = [];
 			window.curPosition = {};
-			function initMap() {
-				window.map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: 25.05, lng: 121.53},
-                    zoom: 13,
-                    disableDefaultUI: true});
+			function update_position() {
                 if (navigator.geolocation)
                     navigator.geolocation.getCurrentPosition(function(position) {
                         window.curPosition.lat = position.coords.latitude;
                         window.curPosition.lng = position.coords.longitude;
                         map.panTo(window.curPosition);
                     });
+            }
+			function initMap() {
+				window.map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: 25.05, lng: 121.53},
+                    zoom: 13,
+                    disableDefaultUI: true});
+				update_position();
 			}
 		</script>
 
