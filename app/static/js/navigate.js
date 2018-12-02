@@ -9,10 +9,30 @@ $(document).ready(function () {
     $('#navigate-apply-btn').click(function () {
         let way = $('input:radio:checked[name=navigate-way]').val();
         if (way === '0') {
-
+            let data = find_data_by_distance();
+            if (data == null) {
+                alert("暫無符合條件的飲水機，請至偏好設定調整");
+                window.state = 'clear';
+                page_control();
+            } else {
+                update_position();
+                draw_navigation(window.curPosition, data.config.position);
+                window.state = 'clear';
+                page_control();
+            }
         } else {
             let index = $('input:text[name=index]').val();
-
+            let data = find_data_by_id(index);
+            if (data == null) {
+                alert("指定的飲水機不存在或尚未開放");
+                window.state = 'clear';
+                page_control();
+            } else {
+                update_position();
+                draw_navigation(window.curPosition, data.config.position);
+                window.state = 'clear';
+                page_control();
+            }
         }
     });
 });

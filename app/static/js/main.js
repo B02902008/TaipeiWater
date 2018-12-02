@@ -186,6 +186,32 @@ function distance(p1, p2) {
     s = Math.round(s * 10000) / 10000;
     return s;
 }
+function find_data_by_id(id) {
+    let obj = null;
+    data_filtered.forEach(function (val) {
+        if (id === val.info.id)
+            obj = val;
+    });
+    return obj;
+}
+function find_data_by_distance() {
+    let obj = null;
+    let min = -1;
+    update_position();
+    data_filtered.forEach(function (val) {
+        let tmp = distance(window.curPosition, val.config.position);
+        if (obj == null) {
+            obj = val;
+            min = tmp;
+        } else {
+            if (tmp < min) {
+                obj = val;
+                min = tmp;
+            }
+        }
+    });
+    return obj;
+}
 function page_control() {
 	switch (window.state) {
 		case "login":
