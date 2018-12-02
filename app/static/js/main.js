@@ -105,10 +105,16 @@ function data_request() {
 }
 function data_filter() {
     let view_type_arr = window.view_type.split("").map(function(x){return(x==="1");});
+    let view_status_arr = window.view_status.split("").map(function(x){return(x==="1");});
     let view_type_map = {0: '開放空間', 1: '學校', 2: '運動中心', 3 : '醫院', 4: '政府機關',
         5: '捷運站', 6: '公共設施', 7: '圖書館', 8: '其他'};
+    let view_status_map = {0: '可使用', 1: '待確認', 2: '暫停使用'};
     window.data_filtered = window.data_raw.filter(function (x) {
-        if (view_type_arr[x.info.type]) {
+        if (view_type_arr[x.info.type] && view_status_arr[1 - x.info.status]) {
+            x.info.type = view_type_map[x.info.type];
+            x.info.status = view_status_map[1 - x.info.status];
+            if (x.info.number == 0)
+                x.info.number = '若干';
             return x;
         }
     });
