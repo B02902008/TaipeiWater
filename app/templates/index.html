@@ -16,10 +16,6 @@
 		<div id="sidebar-container"></div>
 		<div id="map"></div>
 		<script>
-			window.map;
-			window.geocoder = new google.maps.Geocoder();
-			window.directionsService = new google.maps.DirectionsService();
-			window.directionsDisplay = new google.maps.DirectionsRenderer();
 			window.markers = [];
 			window.curPosition = {};
 			window.targetPosition = {};
@@ -41,8 +37,7 @@
 
             }
             function locate_target(address, callback) {
-			    let geocoder = new google.maps.Geocoder();
-                geocoder.geocode({'address': address}, function (results, status) {
+                window.geocoder.geocode({'address': address}, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         callback(results[0].geometry.location.lat(), results[0].geometry.location.lng(), status);
                     } else {
@@ -51,16 +46,13 @@
                 });
             }
             function draw_navigation() {
-			    let directionsService = new google.maps.DirectionsService();
-                let directionsDisplay = new google.maps.DirectionsRenderer();
-                directionsDisplay.setMap(map);
-                directionsService.route({
+                window.directionsService.route({
                     origin: document.getElementById('start').value,
                     destination: document.getElementById('end').value,
                     travelMode: 'WALKING'
                 }, function(response, status) {
                     if (status === 'OK') {
-                        directionsDisplay.setDirections(response);
+                        window.directionsDisplay.setDirections(response);
                     } else {
                         window.alert('Directions request failed due to ' + status);
                     }
@@ -71,6 +63,10 @@
                     center: {lat: 25.05, lng: 121.53},
                     zoom: 13,
                     disableDefaultUI: true});
+                window.geocoder = new google.maps.Geocoder();
+                window.directionsService = new google.maps.DirectionsService();
+                window.directionsDisplay = new google.maps.DirectionsRenderer();
+                directionsDisplay.setMap(map);
 				update_position();
 			}
 		</script>
