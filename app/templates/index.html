@@ -27,7 +27,7 @@
                         map.panTo(window.curPosition);
                     });
                 if ('curMarker' in window)
-                    window.curMarker.setPosition(window.curPosition);
+                    window.curMarker.setPosition(new google.maps.LatLng(window.curPosition.lat, window.curPosition.lng));
                 else
                     window.curMarker = new google.maps.Marker({
                         position: window.curPosition,
