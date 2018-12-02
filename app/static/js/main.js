@@ -93,6 +93,7 @@ function data_request() {
         data: {},
         success: function(response) {
             if (response.success) {
+                console.log(response.msg);
             } else {
                 alert(response.msg);
             }
