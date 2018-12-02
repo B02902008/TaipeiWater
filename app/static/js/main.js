@@ -133,6 +133,8 @@ function markers_clear() {
     window.markers = [];
 }
 function data_show() {
+    if (window.view_range != 0)
+        update_position();
     window.data_view.forEach(function (val, idx) {
         window.markers[idx] = new google.maps.Marker(val.config);
         window.markers[idx].setMap(window.map);
