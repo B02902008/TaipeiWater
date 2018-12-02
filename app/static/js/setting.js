@@ -80,7 +80,7 @@ $(document).ready(function () {
 			success: function(response) {
 				if (response.success) {
 				    alert(response.msg);
-                    window.state = 'clear';
+                    window.state = 'showall';
                     page_control();
                     click_showall();
                 } else {

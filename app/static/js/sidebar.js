@@ -52,11 +52,15 @@ function initial_sidebar() {
         $('#menu-report').hide();
     }
 }
+function showall_click_func() {
+    markers_clear();
+    window.data_view = window.data_filtered;
+    data_show();
+}
 function click_showall() {
     $('.menu-list-item').removeClass("menu-selected");
     $('#menu-show_all').addClass("menu-selected");
-    window.data_view = window.data_filtered;
-    data_show();
+    showall_click_func();
 }
 function toggle_sidebar() {
     $('#sidebar-overlay').toggle();

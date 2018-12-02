@@ -122,6 +122,12 @@ function data_filter() {
         }
     });
 }
+function markers_clear() {
+    window.markers.forEach(function (val, idx) {
+        window.markers[idx].setMap(null);
+    });
+    window.markers = [];
+}
 function data_show() {
     window.data_view.forEach(function (val, idx) {
         window.markers[idx] = new google.maps.Marker(val.config);
@@ -165,10 +171,13 @@ function page_control() {
 		    show_panel();
 		    show_sidebar();
             break;
-		case "clear":
+		case "showall":
 		    clear_panel();
 		    hide_panel();
 		    show_sidebar();
+		    data_request();
+		    data_filter();
+		    click_showall();
             break;
 		default:
 			break;
