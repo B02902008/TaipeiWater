@@ -112,7 +112,7 @@ function data_filter() {
     window.data_filtered = window.data_raw.filter(function (x) {
         let tmp1 = view_type_arr[x.info.type];
         let tmp2 = view_status_arr[1 - x.info.status];
-        let tmp3 = distance(x.config.position, window.curPosition) <= window.view_range;
+        let tmp3 = distance(x.config.position, window.curPosition) <= ((window.view_range == 0) ? 99 : window.view_range);
         if (tmp1 && tmp2 && tmp3) {
             x.info.type = view_type_map[x.info.type];
             x.info.status = view_status_map[1 - x.info.status];
