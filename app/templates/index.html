@@ -26,6 +26,14 @@
                         window.curPosition.lng = position.coords.longitude;
                         map.panTo(window.curPosition);
                     });
+                if ('curMarker' in window)
+                    window.curMarker.setPosition(window.curPosition);
+                else
+                    window.curMarker = new google.maps.Marker({
+                        position: window.curPosition,
+                        icon: "{{url_for('static', filename='img/current-marker.png')}}",
+                        map: map
+                    });
             }
 			function initMap() {
 				window.map = new google.maps.Map(document.getElementById('map'), {

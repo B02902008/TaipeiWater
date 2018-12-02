@@ -149,9 +149,9 @@ function data_show() {
 function info2string(info) {
     let str = '';
     str += '飲水機編號：' + info.id + '<br>';
-    str += '設置場所：' + info.place + '(' + info.type + ')<br>';
+    str += '設置場所：' + info.place + '  (' + info.type + ')<br>';
     str += '本日開放時段：' + info.open + '<br>';
-    str += '設置台數：' + info.number + '(' + info.status + ')<br>';
+    str += '設置台數：' + info.number + '  (' + info.status + ')<br>';
     str += '設置位置：' + info.location;
     return str;
 }
