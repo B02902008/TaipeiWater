@@ -108,7 +108,7 @@ function data_filter() {
     let view_type_map = {0: '開放空間', 1: '學校', 2: '運動中心', 3 : '醫院', 4: '政府機關',
         5: '捷運站', 6: '公共設施', 7: '圖書館', 8: '其他'};
     window.data_filtered = window.data_raw.filter(function (x) {
-        if (view[x.info.type]) {
+        if (view_type_arr[x.info.type]) {
             return x;
         }
     });
