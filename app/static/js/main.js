@@ -110,7 +110,10 @@ function data_filter() {
         5: '捷運站', 6: '公共設施', 7: '圖書館', 8: '其他'};
     let view_status_map = {0: '可使用', 1: '待確認', 2: '暫停使用'};
     window.data_filtered = window.data_raw.filter(function (x) {
-        if (view_type_arr[x.info.type] && view_status_arr[1 - x.info.status]) {
+        let tmp1 = view_type_arr[x.info.type];
+        let tmp2 = view_status_arr[1 - x.info.status];
+        let tmp3 = distance(x.config.position, window.curPosition) <= window.view_range;
+        if (tmp1 && tmp2 && tmp3) {
             x.info.type = view_type_map[x.info.type];
             x.info.status = view_status_map[1 - x.info.status];
             if (x.info.number == 0)
@@ -125,6 +128,19 @@ function data_show() {
         window.markers[idx].setMap(window.map);
     });
 }
+function distance(p1, p2) {
+    let radLat1 = p1.lat * Math.PI / 180.0;
+    let radLat2 = p2.lat * Math.PI / 180.0;
+    let a = radLat1 - radLat2;
+    let  b = p1.lng * Math.PI / 180.0 - p2 * Math.PI / 180.0;
+    let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) +
+        Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+    s = s * 6378.137;
+    s = Math.round(s * 10000) / 10000;
+    return s;
+}
+// 调用 return的距离单位为km
+GetDistance(10.0,113.0,12.0,114.0)
 function page_control() {
 	switch (window.state) {
 		case "login":
