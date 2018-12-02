@@ -11,8 +11,8 @@ function window_reset() {
     window.uid = -1;
     window.help = false;
     window.token = '';
-    window.view_type = '';
-    window.view_status = '';
+    window.view_type = '111111111';
+    window.view_status = '100';
     window.view_range = 0;
     window.login = false;
     window.state = "login";
@@ -95,6 +95,7 @@ function data_request_show() {
             if (response.success) {
                 window.data_raw = response.msg;
                 data_filter();
+                console.log(window.data_filtered);
                 markers_clear();
                 window.data_view = window.data_filtered;
                 data_show();
