@@ -139,7 +139,10 @@ function data_show() {
         window.markers[idx] = new google.maps.Marker(val.config);
         window.markers[idx].setMap(window.map);
         window.markers[idx].addListener('click', function() {
-            (info2string(val.info)).open(map, window.markers[idx]);
+            let infowindow = new google.maps.InfoWindow({
+                content: info2string(val.info)
+            });
+            infowindow.open(map, window.markers[idx]);
         });
     });
 }
