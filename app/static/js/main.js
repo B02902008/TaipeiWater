@@ -122,7 +122,7 @@ function data_filter() {
 function data_show() {
     window.data_view.forEach(function (val, idx) {
         window.markers[idx] = new google.maps.Marker(val.config);
-        window.markers[i].setMap(window.map);
+        window.markers[idx].setMap(window.map);
     });
 }
 function page_control() {
