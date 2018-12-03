@@ -26,9 +26,9 @@ $(document).ready(function () {
             let location = $('input:text[name=report-new-location]').val();
             let number = $('input:text[name=report-new-number]').val();
             let open = {};
-            $('input:checkbox[name=report-new-weekday]').each(function (x) {
-                let weekday = parseInt($(x).val());
-                if ($(x).prop('checked')) {
+            $('input:checkbox[name=report-new-weekday]').each(function() {
+                let weekday = parseInt($(this).val());
+                if ($(this).prop('checked')) {
                     let time = $('input:text[name=report-new-open-' + weekday + ']').val();
                     let time_arr = time.replace(/\s/g, '').match(/(\d+)[\uFF1A:](\d+)[\uFF5E~](\d+)[\uFF1A:](\d+)/i);
                     if (time_arr != null) {
