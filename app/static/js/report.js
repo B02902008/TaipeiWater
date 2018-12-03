@@ -3,6 +3,9 @@ $(document).ready(function () {
     data.forEach(function (val) {
         $('select[name=report-old-index]').append(new Option(val.info.id, val.info.id));
     });
+    if (data.length == 0) {
+        $('select[name=report-old-index]').append(new Option("附近(100公尺內)沒有飲水機喔", ""));
+    }
     $('.report-way-form').hide();
     $('input:radio[name=report-way]').click(function() {
         let way = $('input:radio:checked[name=report-way]').val();
