@@ -216,6 +216,14 @@ function find_data_by_distance() {
     });
     return obj;
 }
+function find_data_nearby() {
+    update_position();
+    let obj = window.data_filtered.filter(function (x) {
+        if (distance(window.curPosition, x.config.position) <= 0.1)
+            return x;
+    });
+    return obj;
+}
 function page_control() {
 	switch (window.state) {
 		case "login":

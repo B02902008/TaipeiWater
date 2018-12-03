@@ -1,0 +1,102 @@
+<div id="report-panel-body">
+    <span>使用者回報功能</span>
+    <div class="report-way-radio">
+        <div class="panel-tag">
+            <div class="panel-tag-before"></div>
+            <div class="panel-tag-middle">選擇回報方式&nbsp;</div>
+            <div class="panel-tag-after"></div>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="report-way" value="new">回報新的飲水機</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="report-way" value="old">回報待確認的飲水機</label>
+        </div>
+    </div>
+    <div class="report-way-form" id="old">
+        <div class="panel-tag">
+            <div class="panel-tag-before"></div>
+            <div class="panel-tag-middle">回報內容&nbsp;</div>
+            <div class="panel-tag-after"></div>
+        </div>
+        <select class="form-control form-control-sm" name="report-old-index">
+            <option value="" selected disabled>選擇附近待確認的飲水機</option>
+        </select>
+        <div class="radio">
+            <label><input type="radio" name="report-old-available" value="1">回報可使用</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="report-old-available" value="0">回報不可使用</label>
+        </div>
+    </div>
+    <div class="report-way-form" id="new">
+        <div class="panel-tag">
+            <div class="panel-tag-before"></div>
+            <div class="panel-tag-middle">回報內容&nbsp;</div>
+            <div class="panel-tag-after"></div>
+        </div>
+        <select class="form-control form-control-sm" name="report-new-type">
+            <option value="" selected disabled>選擇設置場所分類</option>
+            <option value="0">開放空間</option>
+            <option value="1">學校</option>
+            <option value="2">運動中心</option>
+            <option value="3">醫院</option>
+            <option value="4">政府機關</option>
+            <option value="5">捷運站</option>
+            <option value="6">公共設施</option>
+            <option value="7">圖書館</option>
+            <option value="8">其他</option>
+        </select>
+        <div class="flex-div">
+            <span>設置場所：</span>
+            <input type="text" class="inline-text" name="report-new-place" placeholder="例：台灣大學德田館">
+        </div>
+        <div class="flex-div">
+            <span>設置位置：</span>
+            <input type="text" class="inline-text" name="report-new-location" placeholder="例：R101教室右前門">
+        </div>
+        <div class="flex-div">
+            <span>設置台數：</span>
+            <input type="text" class="inline-text" name="report-new-number" placeholder="例：1">
+        </div>
+        <div>
+            <span>開放時段：</span>
+            <div class="checkbox flex-div">
+                <label><input type="checkbox" name="report-new-weekday" value="1">週一：</label>
+                <input type="text" class="inline-text" placeholder="例：00:00 ~ 23:59" name="report-new-open-1">
+            </div>
+            <div class="checkbox flex-div">
+                <label><input type="checkbox" name="report-new-weekday" value="2">週二：</label>
+                <input type="text" class="inline-text" placeholder="例：00:00 ~ 23:59" name="report-new-open-2">
+            </div>
+            <div class="checkbox flex-div">
+                <label><input type="checkbox" name="report-new-weekday" value="3">週三：</label>
+                <input type="text" class="inline-text" placeholder="例：00:00 ~ 23:59" name="report-new-open-3">
+            </div>
+            <div class="checkbox flex-div">
+                <label><input type="checkbox" name="report-new-weekday" value="4">週四：</label>
+                <input type="text" class="inline-text" placeholder="例：00:00 ~ 23:59" name="report-new-open-4">
+            </div>
+            <div class="checkbox flex-div">
+                <label><input type="checkbox" name="report-new-weekday" value="5">週五：</label>
+                <input type="text" class="inline-text" placeholder="例：00:00 ~ 23:59" name="report-new-open-5">
+            </div>
+            <div class="checkbox flex-div">
+                <label><input type="checkbox" name="report-new-weekday" value="6">週六：</label>
+                <input type="text" class="inline-text" placeholder="例：00:00 ~ 23:59" name="report-new-open-6">
+            </div>
+            <div class="checkbox flex-div">
+                <label><input type="checkbox" name="report-new-weekday" value="0">週日：</label>
+                <input type="text" class="inline-text" placeholder="例：00:00 ~ 23:59" name="report-new-open-0">
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 panel-btn-container"><button type="button" class="btn btn-danger" id="report-cancel-btn">
+        <span class="glyphicon glyphicon-remove"></span>&nbsp;取消
+    </button></div>
+    <div class="col-xs-6 panel-btn-container"><button type="button" class="btn btn-success" id="report-apply-btn">
+        <span class="glyphicon glyphicon-ok"></span>&nbsp;套用
+    </button></div>
+</div>
+<script src="{{url_for('static', filename='js/report.js')}}"></script>
+<link rel="stylesheet" href="{{url_for('static', filename='css/report.css')}}">

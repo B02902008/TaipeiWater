@@ -1,0 +1,44 @@
+.panel-tag {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    display:  block;
+}
+.panel-tag-before {
+    width: 0;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #4285F4 #4285F4 #4285F4 transparent;
+    display: inline-block;
+    margin: 0 -2px 0 0;
+}
+.panel-tag-middle {
+    background-color: #4285F4;
+    color: #FFFFFF;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 -2px 0 -2px;
+}
+.panel-tag-after {
+    width:0;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent #4285F4;
+    display: inline-block;
+    margin: 0 0 0 -2px;
+}
+.flex-div {
+  display: flex;
+  margin: 15px 0 15px 0;
+}
+.inline-text {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #CCC;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 14px;
+  height: 10px;
+  padding: 10px 0 10px 0;
+  flex: 2;
+}

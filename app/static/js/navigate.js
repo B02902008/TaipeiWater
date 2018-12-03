@@ -22,16 +22,20 @@ $(document).ready(function () {
             }
         } else {
             let index = $('input:text[name=index]').val();
-            let data = find_data_by_id(index);
-            if (data == null) {
-                alert("指定的飲水機不存在或尚未開放");
-                window.state = 'clear';
-                page_control();
+            if (index === "") {
+                alert("編號不可為空白");
             } else {
-                update_position();
-                draw_navigation(window.curPosition, data.config.position, data);
-                window.state = 'clear';
-                page_control();
+                let data = find_data_by_id(index);
+                if (data == null) {
+                    alert("指定的飲水機不存在或尚未開放");
+                    window.state = 'clear';
+                    page_control();
+                } else {
+                    update_position();
+                    draw_navigation(window.curPosition, data.config.position, data);
+                    window.state = 'clear';
+                    page_control();
+                }
             }
         }
     });
