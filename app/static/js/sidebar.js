@@ -20,6 +20,10 @@ $(document).ready(function () {
         window.state = "target";
         page_control();
     });
+    $('#menu-report').click(function () {
+        window.state = "report";
+        page_control();
+    });
     $('#menu-setting').click(function () {
         window.state = "setting";
         page_control();
