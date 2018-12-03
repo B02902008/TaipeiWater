@@ -261,6 +261,11 @@ function page_control() {
             map_clear();
             data_target_show();
             break;
+		case "report":
+            load_report();
+		    show_panel();
+		    show_sidebar();
+            break;
 		case "setting":
             load_setting();
 		    show_panel();

@@ -10,6 +10,9 @@ function load_navigate() {
 function load_target() {
     $('#control-panel').load("/load/target");
 }
+function load_report() {
+    $('#control-panel').load("/load/report");
+}
 function load_setting() {
     $('#control-panel').load("/load/setting");
 }
