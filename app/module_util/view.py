@@ -151,7 +151,7 @@ def confirm():
         db_op.db_close(db)
         return json.dumps({"success": False, "msg": "無法確認使用者身份"})
     status, uid = get_confirm_data(request.values['index'], db, cursor)
-    if status is None or uid2 is None:
+    if status is None or uid is None:
         db_op.db_close(db)
         return json.dumps({"success": False, "msg": "無指定飲水機資料"})
     elif uid == request.values['uid']:
