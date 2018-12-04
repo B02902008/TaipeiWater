@@ -141,5 +141,5 @@ def report():
         db_op.db_close(db)
         return json.dumps({"success": False, "msg": "無法確認使用者身份"})
     print(request.values['data'])
-    
+    print('Jizz')
     return
