@@ -219,7 +219,7 @@ function find_data_by_distance() {
 function find_data_nearby() {
     update_position();
     let obj = window.data_filtered.filter(function (x) {
-        if (distance(window.curPosition, x.config.position) <= 0.1)
+        if ((distance(window.curPosition, x.config.position) <= 0.1) && (x.info.status === '待確認'))
             return x;
     });
     return obj;

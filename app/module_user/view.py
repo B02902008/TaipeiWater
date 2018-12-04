@@ -143,6 +143,7 @@ def setting():
     if db is None or cursor is None:
         return json.dumps({"success": False, "msg": "資料庫錯誤"})
     if not auth_user(str(request.values['uid']), request.values['token'], db, cursor):
+        db_op.db_close(db)
         return json.dumps({"success": False, "msg": "無法更新使用者偏好設定"})
     update_setting(str(request.values['uid']), request.values['view_type'], request.values['view_status'],
                    str(request.values['view_range']), db, cursor)

@@ -44,9 +44,30 @@ def get_data(aoh, oh, db, cursor):
                                   "location": re[3],
                                   "open": open_hour_2string(oh[re[4]]),
                                   "number": re[7],
-                                  "status": re[8]},
-                         "report": re[9]})
+                                  "status": re[8]}})
     return dict
+
+
+def get_confirm_data(idx, db, cursor):
+    if index[0] == 'D':
+        sql = 'SELECT status FROM fountain_default WHERE id =' + str(int(idx[1:]))
+        result = db_op.sql_execute(db, cursor, sql, False)
+        if len(result) != 1:
+            return None, None
+        return result[0][0], -1
+    else:
+        sql = 'SELECT status,uid FROM fountain_user WHERE id =' + str(int(idx[1:]))
+        result = db_op.sql_execute(db, cursor, sql, False)
+        if len(result) != 1:
+            return None, None
+        return result[0][0], result[0][1]
+
+
+def confirm_data(idx, ava, db, cursor):
+    table = 'fountain_default' if idx[0] == 'D' else 'fountain_user'
+    sql = 'UPDATE ' + table + ' SET status=' + ava + ' WHERE id=' + str(int(idx[1:]))
+    db_op.sql_execute(db, cursor, sql, True)
+    return
 
 
 def open_hour_2string(oh):
@@ -54,6 +75,14 @@ def open_hour_2string(oh):
     for pair in oh:
         str += pair[0][:2] + '：' + pair[0][2:] + ' ~ ' + pair[1][:2] + '：' + pair[1][2:] + ' , '
     return str[:-3]
+
+
+def auth_user(id, tkn, db, cursor):
+    sql = "SELECT COUNT(*) FROM users WHERE id=" + id + " AND token='" + tkn + "'"
+    result = db_op.sql_execute(db, cursor, sql, False)
+    if result[0][0] != 1:
+        return False
+    return True
 
 
 @blue_util.route('/data', methods=['GET'])
@@ -74,3 +103,43 @@ def data():
             available_open_hour.append(key)
     result = get_data(available_open_hour, open_hour, db, cursor)
     return json.dumps({"success": True, "msg": result})
+
+
+@blue_util.route('/confirm', methods=['POST'])
+def confirm():
+    db, cursor = db_op.db_connect()
+    if db is None or cursor is None:
+        return json.dumps({"success": False, "msg": "資料庫錯誤"})
+    if not auth_user(str(request.values['uid']), request.values['token'], db, cursor):
+        db_op.db_close(db)
+        return json.dumps({"success": False, "msg": "無法確認使用者身份"})
+    status, uid = get_confirm_data(request.values['index'], db, cursor)
+    if status is None or uid2 is None:
+        db_op.db_close(db)
+        return json.dumps({"success": False, "msg": "無指定飲水機資料"})
+    elif uid == request.values['uid']:
+        db_op.db_close(db)
+        return json.dumps({"success": False, "msg": "無法球員兼裁判"})
+    elif status != 0:
+        db_op.db_close(db)
+        return json.dumps({"success": False, "msg": "指定飲水機非待確認"})
+    elif not (request.values['available'] == 1 or request.values['available'] == -1):
+        db_op.db_close(db)
+        return json.dumps({"success": False, "msg": "需指定為可使用/不可使用"})
+    else:
+        confirm_data(request.values['index'], str(request.values['available']), db, cursor)
+    db_op.db_close(db)
+    return json.dumps({"success": True, "msg": "飲水機狀態已更新，感謝您幫助完善臺北找水喝"})
+
+
+@blue_util.route('/report', methods=['POST'])
+def report():
+    db, cursor = db_op.db_connect()
+    if db is None or cursor is None:
+        return json.dumps({"success": False, "msg": "資料庫錯誤"})
+    if not auth_user(str(request.values['uid']), request.values['token'], db, cursor):
+        db_op.db_close(db)
+        return json.dumps({"success": False, "msg": "無法確認使用者身份"})
+    print(request.values['data'])
+    
+    return

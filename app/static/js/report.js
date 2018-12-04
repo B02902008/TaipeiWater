@@ -22,12 +22,39 @@ $(document).ready(function () {
         if (way === "old") {
             let index = $('select[name=report-old-index]').val();
             let available = $('input:radio:checked[name=report-old-available]').val();
-            console.log(way, index, available);
+            if (index === null || available === undefined) {
+                alert("有欄位為空白");
+            } else {
+                $.ajax({
+                    url: "/util/confirm",
+                    type: "POST",
+                    dataType: "JSON",
+                    async: false,
+                    data: {
+                        uid: window.uid,
+                        token: window.token,
+                        index: index,
+                        available: parseInt(available)
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.msg);
+                            window.state = "init";
+                            page_control();
+                        } else {
+                            alert(response.msg);
+                        }
+                    },
+                    error: function(response) {
+                        console.log(response);
+                    }
+                });
+            }
         } else if (way === "new") {
             let type = $('select[name=report-new-type]').val();
             let place = $('input:text[name=report-new-place]').val();
             let location = $('input:text[name=report-new-location]').val();
-            let number = $('input:text[name=report-new-number]').val();
+            let number = parseInt($('input:text[name=report-new-number]').val());
             let open = {};
             $('input:checkbox[name=report-new-weekday]').each(function() {
                 let weekday = parseInt($(this).val());
@@ -47,6 +74,39 @@ $(document).ready(function () {
                     open[weekday] = ['0000', '0000'];
                 }
             });
+            if (type === null || place === '' || location === '' || isNaN(number)) {
+                alert("有欄位為空白");
+            } else {
+                let obj = {};
+                obj.place = place;
+                obj.type = type;
+                obj.location = location;
+                obj.number = number;
+                obj.open = open;
+                $.ajax({
+                    url: "/util/report",
+                    type: "POST",
+                    dataType: "JSON",
+                    async: false,
+                    data: {
+                        uid: window.uid,
+                        token: window.token,
+                        data: obj
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.msg);
+                            window.state = "init";
+                            page_control();
+                        } else {
+                            alert(response.msg);
+                        }
+                    },
+                    error: function(response) {
+                        console.log(response);
+                    }
+                });
+            }
             console.log(type, place, location,number, open);
         } else {
             alert("未選擇回報方式");

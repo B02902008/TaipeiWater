@@ -26,7 +26,7 @@
             <label><input type="radio" name="report-old-available" value="1">回報可使用</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="report-old-available" value="0">回報不可使用</label>
+            <label><input type="radio" name="report-old-available" value="-1">回報不可使用</label>
         </div>
     </div>
     <div class="report-way-form" id="new">
@@ -95,7 +95,7 @@
         <span class="glyphicon glyphicon-remove"></span>&nbsp;取消
     </button></div>
     <div class="col-xs-6 panel-btn-container"><button type="button" class="btn btn-success" id="report-apply-btn">
-        <span class="glyphicon glyphicon-ok"></span>&nbsp;套用
+        <span class="glyphicon glyphicon-ok"></span>&nbsp;回報
     </button></div>
 </div>
 <script src="{{url_for('static', filename='js/report.js')}}"></script>
