@@ -154,15 +154,13 @@ def confirm():
     if status is None or uid is None:
         db_op.db_close(db)
         return json.dumps({"success": False, "msg": "無指定飲水機資料"})
-    elif uid == request.values['uid']:
+    elif str(uid) == str(request.values['uid']):
         db_op.db_close(db)
         return json.dumps({"success": False, "msg": "無法球員兼裁判"})
     elif status != 0:
         db_op.db_close(db)
         return json.dumps({"success": False, "msg": "指定飲水機非待確認"})
-    elif not (request.values['available'] == 1 or request.values['available'] == -1):
-        print(type(request.values['uid']))
-        print(type(request.values['available']))
+    elif not (request.values['available'] == '1' or request.values['available'] == '-1'):
         db_op.db_close(db)
         return json.dumps({"success": False, "msg": "需指定為可使用/不可使用"})
     else:
