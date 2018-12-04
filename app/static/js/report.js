@@ -78,10 +78,12 @@ $(document).ready(function () {
                 alert("有欄位為空白");
             } else {
                 let obj = {};
+                update_position();
                 obj.place = place;
                 obj.type = type;
                 obj.location = location;
                 obj.number = number;
+                obj.position = window.curPosition;
                 obj.open = open;
                 $.ajax({
                     url: "/util/report",

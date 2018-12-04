@@ -70,6 +70,42 @@ def confirm_data(idx, ava, db, cursor):
     return
 
 
+def report_data(info, uid, db, cursor):
+    open = find_open_type(info.open, db, cursor)
+    sql = "INSERT INTO `fountain_user` " + \
+          "(`place`,`type`,`location`,`open`,`latitude`,`longitude`,`number`,`status`,`uid`) VALUES ('" + \
+          info['place'] + "'," + data['type'] + ",'" + data['location'] + "'," + open + "," + \
+          data['position']['lat'] + "," + data['position']['lng'] + "," + str(data['number']) + ",0," + uid + ")"
+    db_op.sql_execute(db, cursor, sql, True)
+    return
+
+
+def find_open_type(open, db, cursor):
+    set_lst = []
+    for key in open.keys():
+        sql = "SELECT `type` FROM open_hour WHERE weekday=" + key + " AND `from`='" + open[key][0] + "' AND `to`='" + \
+              open[key][1] + "'"
+        result = db_op.sql_execute(db, cursor, sql, False)
+        tmp = []
+        for re in result:
+            tmp.append(re[0])
+        set_lst.append(set(tmp))
+    print(set_lst)
+    op = set.intersection(*set_lst)
+    print(op)
+    if len(op) == 0:
+        sql = 'SELECT MAX(`type`) FROM open_hour'
+        result = db_op.sql_execute(db, cursor, sql, False)
+        type = result[0][0] + 1
+        for key in open.keys():
+            sql = "INSERT INTO `open_hour` (`type`,`weekday`,`from`,`to`) VALUES (" + str(type) + "," + key + ",'" + \
+                  open[key][0] + "','" + open[key][1] + "')"
+            db_op.sql_execute(db, cursor, sql, True)
+        return str(type)
+    else:
+        return str(list(op)[0])
+
+
 def open_hour_2string(oh):
     str = ''
     for pair in oh:
@@ -140,6 +176,6 @@ def report():
     if not auth_user(str(request.values['uid']), request.values['token'], db, cursor):
         db_op.db_close(db)
         return json.dumps({"success": False, "msg": "無法確認使用者身份"})
-    print(request.values['data'])
-    print('Jizz')
-    return
+    report_data(request.values['data'], str(request.values['uid']), db, cursor)
+    db_op.db_close(db)
+    return json.dumps({"success": False, "msg": "飲水機資料已加入，感謝您幫助完善臺北找水喝"})
