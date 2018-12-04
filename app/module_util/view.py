@@ -71,11 +71,12 @@ def confirm_data(idx, ava, db, cursor):
 
 
 def report_data(info, uid, db, cursor):
+    print(info)
     open = find_open_type(info['open'], db, cursor)
     sql = "INSERT INTO `fountain_user` " + \
           "(`place`,`type`,`location`,`open`,`latitude`,`longitude`,`number`,`status`,`uid`) VALUES ('" + \
-          info['place'] + "'," + data['type'] + ",'" + data['location'] + "'," + open + "," + \
-          data['position']['lat'] + "," + data['position']['lng'] + "," + str(data['number']) + ",0," + uid + ")"
+          info['place'] + "'," + info['type'] + ",'" + info['location'] + "'," + open + "," + \
+          info['position']['lat'] + "," + info['position']['lng'] + "," + str(info['number']) + ",0," + uid + ")"
     db_op.sql_execute(db, cursor, sql, True)
     return
 
