@@ -49,7 +49,7 @@ def get_data(aoh, oh, db, cursor):
 
 
 def get_confirm_data(idx, db, cursor):
-    if index[0] == 'D':
+    if idx[0] == 'D':
         sql = 'SELECT status FROM fountain_default WHERE id =' + str(int(idx[1:]))
         result = db_op.sql_execute(db, cursor, sql, False)
         if len(result) != 1:
