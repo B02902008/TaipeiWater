@@ -91,7 +91,7 @@ $(document).ready(function () {
                     data: {
                         uid: window.uid,
                         token: window.token,
-                        data: obj
+                        data: JSON.stringify(obj)
                     },
                     success: function(response) {
                         if (response.success) {
