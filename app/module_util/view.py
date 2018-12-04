@@ -91,9 +91,7 @@ def find_open_type(open, db, cursor):
         for re in result:
             tmp.append(re[0])
         set_lst.append(set(tmp))
-    print(set_lst)
     op = set.intersection(*set_lst)
-    print(op)
     if len(op) == 0:
         sql = 'SELECT MAX(`type`) FROM open_hour'
         result = db_op.sql_execute(db, cursor, sql, False)
