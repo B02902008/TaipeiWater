@@ -109,7 +109,6 @@ $(document).ready(function () {
                     }
                 });
             }
-            console.log(type, place, location,number, open);
         } else {
             alert("未選擇回報方式");
         }

@@ -179,4 +179,4 @@ def report():
         return json.dumps({"success": False, "msg": "無法確認使用者身份"})
     report_data(json.loads(request.values['data']), str(request.values['uid']), db, cursor)
     db_op.db_close(db)
-    return json.dumps({"success": False, "msg": "飲水機資料已加入，感謝您幫助完善臺北找水喝"})
+    return json.dumps({"success": True, "msg": "飲水機資料已加入，感謝您幫助完善臺北找水喝"})
