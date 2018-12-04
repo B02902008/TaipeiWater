@@ -162,6 +162,8 @@ def confirm():
         return json.dumps({"success": False, "msg": "指定飲水機非待確認"})
     elif not (request.values['available'] == 1 or request.values['available'] == -1):
         print(request.values['available'] == 1)
+        print(request.values['available'])
+        print(type(request.values['available']))
         db_op.db_close(db)
         return json.dumps({"success": False, "msg": "需指定為可使用/不可使用"})
     else:
