@@ -21,7 +21,7 @@ $(document).ready(function () {
         let way = $('input:radio:checked[name=report-way]').val();
         if (way === "old") {
             let index = $('select[name=report-old-index]').val();
-            let available = $('input:radio:checked[name=report-old-available]').val();
+            let available = parseInt($('input:radio:checked[name=report-old-available]').val());
             if (index === null || available === undefined) {
                 alert("有欄位為空白");
             } else {
@@ -34,7 +34,7 @@ $(document).ready(function () {
                         uid: window.uid,
                         token: window.token,
                         index: index,
-                        available: parseInt(available)
+                        available: available
                     },
                     success: function(response) {
                         if (response.success) {
