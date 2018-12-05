@@ -43,7 +43,7 @@ function getCookie(name) {
     let cookies = document.cookie.split(';');
     for (let i = 0 ; i < cookies.length ; i ++) {
         let c = cookies[i].trim();
-        if (c.indexOf(key) == 0)
+        if (c.indexOf(key) === 0)
         	return c.substring(key.length, c.length);
     }
     return null;
@@ -116,19 +116,18 @@ function data_filter() {
     window.data_filtered = window.data_raw.filter(function (x) {
         let tmp1 = view_type_arr[x.info.type];
         let tmp2 = view_status_arr[1 - x.info.status];
-        if (tmp1 && tmp2) {
-            x.info.type = view_type_map[x.info.type];
-            x.info.status = view_status_map[1 - x.info.status];
-            if (x.info.number == 0)
-                x.info.number = '若干';
-            return x;
-        }
+        return (tmp1 && tmp2);
+    });
+    window.data_filtered.forEach(function (val) {
+        val.info.type = view_type_map[val.info.type];
+        val.info.status = view_status_map[1 - val.info.status];
+        if (val.info.number === 0)
+            val.info.number = '若干';
     });
 }
 function data_target_show() {
     window.data_view = window.data_filtered.filter(function (x) {
-        if (distance(x.config.position, window.targetPosition) <= window.target_range)
-            return x;
+        return (distance(x.config.position, window.targetPosition) <= window.target_range);
     });
     map.panTo(window.targetPosition);
     window.data_view.forEach(function (val, idx) {
@@ -154,10 +153,9 @@ function map_clear() {
 }
 function data_show() {
     window.data_view = window.data_filtered.filter(function (x) {
-        if ((window.view_range == 0) ? true : (distance(x.config.position, window.curPosition) <= window.view_range))
-            return x;
+        return ((window.view_range === 0) ? true : (distance(x.config.position, window.curPosition) <= window.view_range));
     });
-    if (window.view_range != 0)
+    if (window.view_range !== 0)
         update_position();
     window.data_view.forEach(function (val, idx) {
         window.markers[idx] = new google.maps.Marker(val.config);
@@ -219,8 +217,7 @@ function find_data_by_distance() {
 function find_data_nearby() {
     update_position();
     let obj = window.data_filtered.filter(function (x) {
-        if ((distance(window.curPosition, x.config.position) <= 0.1) && (x.info.status === '待確認'))
-            return x;
+        return ((distance(window.curPosition, x.config.position) <= 0.1) && (x.info.status === '待確認'));
     });
     return obj;
 }
