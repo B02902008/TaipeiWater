@@ -28,8 +28,10 @@
     margin: 0 0 0 -2px;
 }
 .flex-div {
-  display: flex;
   margin: 15px 0 15px 0;
+}
+.inline-label {
+  width: 70px;
 }
 .inline-text {
   background-color: transparent;
@@ -40,5 +42,5 @@
   font-size: 14px;
   height: 10px;
   padding: 10px 0 10px 0;
-  flex: 2;
+  width: calc(100% - 80px);
 }
