@@ -38,7 +38,7 @@
             }
             function locate_target(address, callback) {
                 window.geocoder.geocode({'address': address}, function (results, status) {
-                    if (status == google.maps.GeocoderStatus.OK) {
+                    if (status === google.maps.GeocoderStatus.OK) {
                         callback(results[0].geometry.location.lat(), results[0].geometry.location.lng(), status);
                     } else {
                         callback(null, null, status);
